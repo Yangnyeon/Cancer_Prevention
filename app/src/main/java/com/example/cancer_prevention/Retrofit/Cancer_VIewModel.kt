@@ -9,11 +9,11 @@ import retrofit2.http.POST
 
 class Cancer_VIewModel(private val repository : Cancer_Repository) : ViewModel() {
 
-    val myResponse : MutableLiveData<Response<data>> = MutableLiveData()
+    val myResponse : MutableLiveData<Response<Cancer_data_class>> = MutableLiveData()
 
-    fun getPost() {
+    fun getPost(Perapge : Int, per : Int, current : Int) {
         viewModelScope.launch {
-            val response = repository.getPost()
+            val response = repository.getPost(Perapge, per, current)
             myResponse.value = response
         }
     }
