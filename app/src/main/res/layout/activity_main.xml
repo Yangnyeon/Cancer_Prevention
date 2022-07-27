@@ -7,11 +7,19 @@
     tools:context=".MainActivity"
     android:orientation="vertical">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="레트로핏 바로가기"
-        android:id="@+id/gogo_retrofit"
-        ></Button>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="650sp"
+        android:id="@+id/container"
+        android:layout_weight="1"
+        ></FrameLayout>
 
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:menu="@menu/bottom_menu_bar"
+        android:id="@+id/bottonavi"
+        app:itemIconTint="@color/black"
+        app:itemTextColor="@color/black"
+        ></com.google.android.material.bottomnavigation.BottomNavigationView>
 </LinearLayout>
