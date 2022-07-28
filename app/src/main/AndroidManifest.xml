@@ -2,16 +2,31 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.cancer_prevention">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
-        android:theme="@style/Theme.Cancer_Prevention">
+        android:theme="@style/Theme.Cancer_Prevention"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".room.Calendar.Calendar_Room"
+            android:exported="true" />
+        <activity
+            android:name=".room.Room_Activity"
+            android:exported="true" />
+        <activity
+            android:name=".Cancer_check.MyCustomDialog"
+            android:exported="true" />
+        <activity
+            android:name=".Cancer_check.Todo_List"
+            android:exported="true" />
+        <activity
+            android:name=".corutine"
+            android:exported="true" />
         <activity
             android:name=".Retrofit.Cancer_Retrofit"
             android:exported="true" />
