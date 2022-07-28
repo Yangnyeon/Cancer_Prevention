@@ -10,6 +10,10 @@
         <entry key="..\:/Users/user/AndroidStudioProjects/Cancer_Prevention/app/src/main/res/layout/Cancer_holder.xml" value="0.264" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Cancer_Prevention/app/src/main/res/layout/activity_calendar_room.xml" value="0.12552083333333333" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Cancer_Prevention/app/src/main/res/layout/activity_cancer_retrofit.xml" value="0.176" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Cancer_Prevention/app/src/main/res/layout/activity_comment_list.xml" value="0.21557971014492755" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Cancer_Prevention/app/src/main/res/layout/activity_community_holder.xml" value="0.21557971014492755" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Cancer_Prevention/app/src/main/res/layout/activity_community_holder2.xml" value="0.21557971014492755" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Cancer_Prevention/app/src/main/res/layout/activity_community_write.xml" value="0.21557971014492755" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Cancer_Prevention/app/src/main/res/layout/activity_corutine.xml" value="0.12916666666666668" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Cancer_Prevention/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Cancer_Prevention/app/src/main/res/layout/activity_my_custom_dialog.xml" value="0.11302083333333333" />
@@ -19,8 +23,9 @@
         <entry key="..\:/Users/user/AndroidStudioProjects/Cancer_Prevention/app/src/main/res/layout/check_item.xml" value="0.152" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Cancer_Prevention/app/src/main/res/layout/fragment_community_.xml" value="0.152" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Cancer_Prevention/app/src/main/res/layout/fragment_main_.xml" value="0.152" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Cancer_Prevention/app/src/main/res/layout/list_layout.xml" value="0.12411347517730496" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Cancer_Prevention/app/src/main/res/layout/pager.xml" value="0.12552083333333333" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Cancer_Prevention/app/src/main/res/layout/todo_item.xml" value="0.14719202898550723" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Cancer_Prevention/app/src/main/res/layout/todo_item.xml" value="0.176" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Cancer_Prevention/app/src/main/res/menu/bottom_menu_bar.xml" value="0.12552083333333333" />
       </map>
     </option>

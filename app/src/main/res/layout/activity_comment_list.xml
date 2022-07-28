@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_margin="1sp"
+    android:backgroundTint="#00000000"
+    >
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16sp"
+        android:textSize="20sp"
+        android:text="댓글"
+        android:paddingLeft="9sp"
+        android:id="@+id/comment123"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:fontFamily="@font/jua"
+        ></TextView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16sp"
+        android:textSize="20sp"
+        android:text="게시물 doc"
+        android:paddingLeft="9sp"
+        android:id="@+id/content_doc"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:fontFamily="@font/jua"
+        android:visibility="invisible"
+        ></TextView>
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_delete_24"
+        android:layout_gravity="end"
+        android:id="@+id/comment_delete"
+        android:layout_marginTop="16sp"
+        android:visibility="visible"
+        android:layout_marginRight="30sp"
+        ></ImageView>
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="13sp"
+            android:text="시간"
+            android:paddingLeft="9sp"
+            android:id="@+id/comment_date123"
+            android:layout_marginTop="60sp"
+            android:layout_marginLeft="16sp"
+            android:layout_marginBottom="16sp"
+            android:fontFamily="@font/jua"
+            ></TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="13sp"
+            android:text="닉네임"
+            android:paddingLeft="9sp"
+            android:id="@+id/comment_nickname"
+            android:layout_marginTop="60sp"
+            android:layout_marginLeft="16sp"
+            android:fontFamily="@font/jua"
+            android:gravity="end"
+            android:layout_marginRight="30sp"
+            android:layout_weight="1"
+            ></TextView>
+
+
+
+
+    </LinearLayout>
+
+
+
+</androidx.cardview.widget.CardView>

@@ -13,6 +13,18 @@
         android:theme="@style/Theme.Cancer_Prevention"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".Community.Community_Write"
+            android:exported="true" />
+        <activity
+            android:name=".Community.Community_holder"
+            android:exported="true" />
+        <activity
+            android:name=".Community.Community_holder"
+            android:exported="true" />
+        <activity
+            android:name=".Community_Write"
+            android:exported="true" />
+        <activity
             android:name=".room.Calendar.Calendar_Room"
             android:exported="true" />
         <activity

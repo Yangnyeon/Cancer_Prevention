@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:title="메인화면"
+        android:icon="@drawable/ic_baseline_house_24"
+        android:id="@+id/first"
+        ></item>
+
+    <item
+        android:title="커뮤니티"
+        android:icon="@drawable/ic_baseline_local_hospital_24"
+        android:id="@+id/second"
+        ></item>
+
+
+
+</menu>
