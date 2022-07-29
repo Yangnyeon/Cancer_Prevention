@@ -273,14 +273,101 @@
 
             </LinearLayout>
 
-
-
-
-            <Button
-                android:id="@+id/gogo_retrofit"
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="레트로핏"></Button>
+                android:layout_marginLeft="16sp"
+                android:layout_marginTop="16sp"
+                android:fontFamily="@font/jua"
+                android:text="암 관련"
+                android:textColor="#000000"
+                android:textSize="24sp"></TextView>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                >
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="180sp"
+                    android:layout_marginLeft="10sp"
+                    android:layout_marginTop="10sp"
+                    android:id="@+id/gogo_retrofit"
+                    android:backgroundTint="#838583"
+                    android:elevation="16sp"
+                    app:cardCornerRadius="16sp"
+                    android:layout_weight="1">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:background="@drawable/retrofit_image">
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20sp"
+                            android:layout_marginTop="130sp"
+                            android:fontFamily="@font/jua"
+                            android:text="암 통계"
+                            android:textColor="#000000"
+                            android:textSize="25sp"
+                            android:textStyle="bold"></TextView>
+
+
+                    </LinearLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="180sp"
+                    android:layout_marginLeft="10sp"
+                    android:layout_marginTop="10sp"
+                    android:layout_marginRight="5sp"
+                    android:id="@+id/gogo_retrofit2"
+                    android:backgroundTint="#838583"
+                    android:elevation="16sp"
+                    app:cardCornerRadius="16sp"
+                    android:layout_weight="1">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:background="@drawable/health_image">
+
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20sp"
+                            android:layout_marginTop="130sp"
+                            android:fontFamily="@font/jua"
+                            android:text="암 예방 수칙"
+                            android:textColor="#000000"
+                            android:textSize="25sp"
+                            android:textStyle="bold"></TextView>
+
+
+                    </LinearLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+
+
+
 
 
 

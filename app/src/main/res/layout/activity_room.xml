@@ -1,48 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".room.Room_Activity"
-    android:orientation="vertical">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/editText"
-            android:layout_margin="16sp"
-            android:layout_weight="1"
-            ></EditText>
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="추가"
-            android:layout_marginTop="16sp"
-            android:id="@+id/btnAdd"
-            ></Button>
+    android:orientation="vertical"
+   >
 
 
-    </LinearLayout>
-
-    <Button
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="캘린더"
+        android:layout_marginLeft="16sp"
+        android:layout_marginTop="22sp"
+        android:fontFamily="@font/jua"
+        android:text="담배 기록 일지"
+        android:textColor="#000000"
+        android:textSize="36sp"></TextView>
+
+
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/calendar"
-        ></Button>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_marginRight="16sp"
+        android:layout_marginBottom="220sp"
+        android:backgroundTint="#3F51B5"
+        android:src="@drawable/ic_baseline_calendar_month_24"
+        app:fabSize="normal" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/recyclerViewTodo"
-        ></androidx.recyclerview.widget.RecyclerView>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_marginRight="16sp"
+        android:layout_marginBottom="120sp"
+        android:backgroundTint="#3A3939"
+        android:src="@drawable/cigarette"
+        app:fabSize="normal" />
 
-</LinearLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/recyclerViewTodo"
+                android:layout_marginTop="70sp"
+                ></androidx.recyclerview.widget.RecyclerView>
+
+
+           <androidx.cardview.widget.CardView
+               android:layout_width="150sp"
+               android:layout_height="50sp"
+               android:layout_gravity="bottom|end"
+               android:backgroundTint="#8BC34A"
+               app:cardCornerRadius="16sp"
+               android:layout_marginBottom="30sp"
+               android:layout_marginRight="16sp"
+               >
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:id="@+id/cigarette_count"
+                   android:textSize="24sp"
+                   android:text="하하"
+                   android:textColor="#000000"
+                   android:fontFamily="@font/jua"
+                   android:layout_gravity="center"
+                   ></TextView>
+
+
+           </androidx.cardview.widget.CardView>
+
+
+</FrameLayout>
+
+
+
+
+
+

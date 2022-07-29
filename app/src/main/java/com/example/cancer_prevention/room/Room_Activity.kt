@@ -4,11 +4,14 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.room.Room
 import com.example.cancer_prevention.databinding.ActivityRoomBinding
 import com.example.cancer_prevention.room.Calendar.Calendar_Room
+import kotlinx.android.synthetic.main.activity_room.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
@@ -19,6 +22,9 @@ class Room_Activity : AppCompatActivity(), OnItemClick {
     private lateinit var binding: ActivityRoomBinding
     private val model: TodoViewModel by viewModels()
     private lateinit var adapter: CigaretteAdapter
+
+    var count = 0
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,13 +56,27 @@ class Room_Activity : AppCompatActivity(), OnItemClick {
                 val gettime = time.format(mDate)
 
 
-                model.insert(Cigarette(false,binding.editText.text.toString(), Integer.parseInt(getYear), Integer.parseInt(getMonth), Integer.parseInt(getDay), gettime.toString()))
+                model.insert(Cigarette(false,"흡연..", Integer.parseInt(getYear), Integer.parseInt(getMonth), Integer.parseInt(getDay), gettime.toString()))
             }
         }
 
         binding.calendar.setOnClickListener {
             startActivity(Intent(this@Room_Activity, Calendar_Room::class.java))
         }
+
+
+        model.getAll().observe(this@Room_Activity, Observer{
+            for(i in it) {
+                cigarette_count.text = "흡연횟수 : " + it.size.toString()
+                //cigarette_count.append(i.Year.toString() + "  ")
+            }
+        })
+
+
+        cigarette_count.text = count.toString()
+
+        //
+
     }
 
     private fun initRecyclerView(){

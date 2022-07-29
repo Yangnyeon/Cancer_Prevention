@@ -1,5 +1,6 @@
 package com.example.cancer_prevention.room.Calendar
 
+import android.icu.number.IntegerWidth
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -14,6 +15,8 @@ import com.example.cancer_prevention.room.CigaretteAdapter
 import com.example.cancer_prevention.room.TodoViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.*
 
 class Calendar_Room : AppCompatActivity() , OnItemClick{
 
@@ -36,6 +39,28 @@ class Calendar_Room : AppCompatActivity() , OnItemClick{
         adapter = CigaretteAdapter(this@Calendar_Room)
         binding.calendarRecyclerview.adapter = adapter
         //adapter.setHasStableIds(true)
+
+        val currentTime : Long = System.currentTimeMillis()
+
+        val year = SimpleDateFormat("yyyy")
+        val month = SimpleDateFormat("MM")
+        val day = SimpleDateFormat("dd")
+        val time = SimpleDateFormat("k:mm:ss")
+
+        val mDate: Date = Date(currentTime)
+
+        val getYear = year.format(mDate)
+        val getMonth = month.format(mDate)
+        val getDay = day.format(mDate)
+        val gettime = time.format(mDate)
+
+        memoViewModel.readDateData(Integer.parseInt(getYear),Integer.parseInt(getMonth),Integer.parseInt(getDay)).observe(this@Calendar_Room, Observer {
+            adapter.setList(it)
+            adapter.notifyDataSetChanged()
+        })
+
+        binding.calendarDateText.text = Integer.parseInt(getYear).toString() + "/" + Integer.parseInt(getMonth) + "/" + Integer.parseInt(getDay)
+
 
 
         binding.calendarView.setOnDateChangeListener { _, year, month, day ->
@@ -60,6 +85,7 @@ class Calendar_Room : AppCompatActivity() , OnItemClick{
              */
 
         }
+
 
         memoViewModel.currentData.observe(this@Calendar_Room, Observer {
             adapter.setData(it)
