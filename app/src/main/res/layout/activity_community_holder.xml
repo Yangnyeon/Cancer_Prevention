@@ -169,7 +169,16 @@
 
 
 
+
+
             </androidx.cardview.widget.CardView>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="#757171"
+                android:layout_marginTop="420sp"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -180,7 +189,7 @@
                     android:id="@+id/recycler_view_community_comment"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="410sp"></androidx.recyclerview.widget.RecyclerView>
+                    android:layout_marginTop="430sp"></androidx.recyclerview.widget.RecyclerView>
 
             </RelativeLayout>
 
