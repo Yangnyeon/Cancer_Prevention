@@ -7,10 +7,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.viewModels
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.cancer_prevention.Community_Viewmodel
+import com.example.cancer_prevention.Nutrient.nutrient_viewmodel
 import com.example.cancer_prevention.R
 import com.example.cancer_prevention.databinding.ActivityCommunityWriteBinding
 import com.example.cancer_prevention.databinding.FragmentCommunityBinding
+import com.example.cancer_prevention.room.TodoViewModel
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
@@ -25,6 +32,10 @@ class Community_Fragment : Fragment() {
 
     val ref : CollectionReference = db.collection("Contacts")
 
+    //test
+
+    private lateinit var model: Community_Viewmodel
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -36,9 +47,23 @@ class Community_Fragment : Fragment() {
 
         binding.btnRead.performClick()
 
+
+
         binding.rvList.layoutManager =
             LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
         binding.rvList.adapter = adapter123
+
+        //test
+
+        model = ViewModelProvider(this, Community_Factory(requireActivity().application))
+            .get(Community_Viewmodel::class.java)
+
+        model.get_Community().observe(requireActivity(), Observer{
+            adapter123.setList(it)
+            adapter123.notifyDataSetChanged()
+        })
+
+        //
 
 
         db.collection("Contacts") // 작업할 컬렉션
@@ -82,94 +107,6 @@ class Community_Fragment : Fragment() {
                 }
         }
 
-
-        /* binding.btnWrite.setOnClickListener {
-             // 대화상자 생성
-             val builder = AlertDialog.Builder(requireActivity())
-
-             val currentTime : Long = System.currentTimeMillis()
-             val simpleDate = SimpleDateFormat("yyyy-MM-dd k:mm:ss")
-             val mDate: Date = Date(currentTime)
-             val getTime = simpleDate.format(mDate)
-
-             val doc = UUID.randomUUID().toString()
-
-             // 대화상자에 텍스트 입력 필드 추가, 대충 만들었음
-             val tvName = TextView(requireActivity())
-             tvName.text = "제목 입력"
-
-             val tvNumber = TextView(requireActivity())
-             tvNumber.text = "내용 입력"
-
-             val passNumber = TextView(requireActivity())
-             passNumber.text = "비밀번호 입력"
-
-             val Nickname = TextView(requireActivity())
-             Nickname.text = "닉네임 입력"
-
-             val etName = EditText(requireActivity())
-             etName.isSingleLine = true
-
-             val etNumber = EditText(requireActivity())
-             etNumber.isSingleLine = true
-
-             val password = EditText(requireActivity())
-             password.isSingleLine = true
-
-             val Nickname_edit = EditText(requireActivity())
-             Nickname_edit.isSingleLine = true
-
-
-             val mLayout = LinearLayout(requireActivity())
-             mLayout.orientation = LinearLayout.VERTICAL
-             mLayout.setPadding(16)
-             mLayout.addView(tvName)
-             mLayout.addView(etName)
-             mLayout.addView(tvNumber)
-             mLayout.addView(etNumber)
-             mLayout.addView(passNumber)
-             mLayout.addView(password)
-             mLayout.addView(Nickname)
-             mLayout.addView(Nickname_edit)
-             builder.setView(mLayout)
-
-             builder.setTitle("데이터 추가")
-             builder.setPositiveButton("추가") { dialog, which ->
-                 // EditText에서 문자열을 가져와 hashMap으로 만듦
-                 val data = hashMapOf(
-                     "name" to etName.text.toString(),
-                     "number" to etNumber.text.toString(),
-                     "com_date" to getTime.toString(),
-                     "password" to password.text.toString(),
-                     "doc" to doc,
-                     "nickname" to Nickname_edit.text.toString(),
-                     "liked" to 0.toString()
-                 )
-                 // Contacts 컬렉션에 data를 자동 이름으로 저장
-                 db.collection("Contacts")
-                     .document(doc)
-                     .set(data)
-                     .addOnSuccessListener {
-                         // 성공할 경우
-                         Toast.makeText(requireActivity(), "데이터가 추가되었습니다", Toast.LENGTH_SHORT).show()
-
-                         //go_board2.putExtra("board_doc", it.toString())
-                         // startActivity(go_board2)
-                     }
-                     .addOnFailureListener { exception ->
-                         // 실패할 경우
-                         Log.w("MainActivity", "Error getting documents: $exception")
-                     }
-
-                 binding.btnRead.performClick()
-             }
-             builder.setNegativeButton("취소") { dialog, which ->
-
-             }
-             builder.show()
-         }
-
-         */
         binding.btnWrite.setOnClickListener {
             startActivity(Intent(requireActivity(), Community_Write::class.java))
         }
@@ -178,6 +115,7 @@ class Community_Fragment : Fragment() {
     }
 
     fun update() {
+
         val adapter123 = ListAdapter(itemList, requireActivity())   // 리사이클러 뷰 어댑터
 
         db.collection("Contacts") // 작업할 컬렉션

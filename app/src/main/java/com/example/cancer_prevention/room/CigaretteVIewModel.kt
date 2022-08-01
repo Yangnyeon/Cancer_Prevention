@@ -42,4 +42,8 @@ class TodoViewModel(application: Application) : AndroidViewModel(application) {
         return repository.readDateData(year, month, day).asLiveData()
     }
 
+    fun searchDatabase(searchQuery: String): LiveData<List<Cigarette>> {
+        return repository.searchDatabase(searchQuery).asLiveData()
+    }
+
 }

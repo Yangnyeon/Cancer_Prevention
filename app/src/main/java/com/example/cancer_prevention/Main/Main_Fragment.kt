@@ -8,10 +8,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.cancer_prevention.Nutrient.nutrient_screen
 import com.example.cancer_prevention.Retrofit.Cancer_Retrofit
 import com.example.cancer_prevention.databinding.FragmentMainBinding
 import com.example.cancer_prevention.room.Calendar.Calendar_Room
 import com.example.cancer_prevention.room.Room_Activity
+import kotlinx.android.synthetic.main.cancer_nutrient.*
 import kotlinx.android.synthetic.main.fragment_main_.*
 
 
@@ -48,7 +50,9 @@ class Main_Fragment : Fragment() {
             startActivity(Intent(requireActivity(), Calendar_Room::class.java))
         }
 
-
+        binding.NutrientGogo.setOnClickListener {
+            startActivity(Intent(requireActivity(), nutrient_screen::class.java))
+        }
 
 
         val adapter11 = ViewPagerAdapter()

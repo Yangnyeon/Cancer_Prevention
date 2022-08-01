@@ -57,7 +57,7 @@
                     android:orientation="horizontal">
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/Select_gogo"
+                        android:id="@+id/Nutrient_gogo"
                         android:layout_width="175sp"
                         android:layout_height="250sp"
                         android:layout_marginLeft="10sp"

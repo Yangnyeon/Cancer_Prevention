@@ -61,7 +61,6 @@ class Cancer_Retrofit : AppCompatActivity() {
         val mAdapter = Cancer_adapter(Consult_List)
         binding.recyclerView.adapter = mAdapter
         binding.recyclerView.layoutManager = LinearLayoutManager(this@Cancer_Retrofit)
-
     }
 
 

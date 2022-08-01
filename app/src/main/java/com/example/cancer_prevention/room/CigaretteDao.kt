@@ -24,5 +24,8 @@ interface CigaretteDao {
     @Query("SELECT * FROM Cigarette ORDER BY year DESC, month DESC, day DESC, id DESC")
     fun readAllData() : Flow<List<Cigarette>>
 
+    @Query("SELECT * FROM Cigarette WHERE content LIKE :searchQuery")
+    fun searchDatabase(searchQuery : String) : Flow<List<Cigarette>>
+
 
 }

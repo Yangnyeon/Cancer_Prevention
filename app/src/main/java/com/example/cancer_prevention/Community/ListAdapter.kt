@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cancer_prevention.R
+import com.example.cancer_prevention.room.Cigarette
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
@@ -96,5 +97,10 @@ class ListAdapter(val itemList: ArrayList<ListLayout>,val context: Context): Rec
         val like_count = itemView.findViewById<TextView>(R.id.thumb_count)
         val nickname = itemView.findViewById<TextView>(R.id.list_tv_nickname)
         val eye_count = itemView.findViewById<TextView>(R.id.eye_count)
+    }
+
+    fun setList(cigarette: List<ListLayout>) {
+        itemList.clear()
+        itemList.addAll(cigarette)
     }
 }

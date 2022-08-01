@@ -33,4 +33,8 @@ class CigaretteRepository(application: Application) {
     fun readDateData(year : Int, month : Int, day : Int): Flow<List<Cigarette>> {
         return cigaretteDao.readDateData(year, month, day)
     }
+
+    fun searchDatabase(searchQuery: String): Flow<List<Cigarette>> {
+        return cigaretteDao.searchDatabase(searchQuery)
+    }
 }

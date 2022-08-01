@@ -18,3 +18,4 @@ class Cancer_VIewModel(private val repository : Cancer_Repository) : ViewModel()
         }
     }
 }
+

@@ -1,13 +1,19 @@
 package com.example.cancer_prevention.room
 
+import android.annotation.SuppressLint
 import android.app.Application
+import android.content.ContentValues.TAG
 import android.icu.util.Calendar
 import android.os.Build
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Filterable
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
+import com.example.cancer_prevention.Nutrient.nutrient_model
 import com.example.cancer_prevention.databinding.TodoItemBinding
+import java.util.logging.Filter
 
 class CigaretteAdapter(listener: OnItemClick) : RecyclerView.Adapter<CigaretteAdapter.TodoViewHolder>() {
 
@@ -20,14 +26,15 @@ class CigaretteAdapter(listener: OnItemClick) : RecyclerView.Adapter<CigaretteAd
 
     //디데이
 
-    var currentYear = 0
-    var currentMonth:kotlin.Int = 0
-    var currentDay:kotlin.Int = 0
 
     private val ONE_DAY = 24 * 60 * 60 * 1000
 
     //
 
+    //서치뷰
+
+
+    //
 
 
 
@@ -37,8 +44,12 @@ class CigaretteAdapter(listener: OnItemClick) : RecyclerView.Adapter<CigaretteAd
         return TodoViewHolder(binding)
     }
 
+    init {
+        memoList = items
+    }
+
     override fun getItemCount(): Int {
-        return items.size
+        return memoList.size
     }
 
     override fun onBindViewHolder(holder: TodoViewHolder, position: Int) {
@@ -100,6 +111,8 @@ class CigaretteAdapter(listener: OnItemClick) : RecyclerView.Adapter<CigaretteAd
 
         }
     }
+
+
 
     fun setData(memo : List<Cigarette>){
         memoList = memo
@@ -164,6 +177,7 @@ class CigaretteAdapter(listener: OnItemClick) : RecyclerView.Adapter<CigaretteAd
             -1
         }
     }
+
 
     //
 

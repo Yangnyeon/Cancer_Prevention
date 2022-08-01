@@ -20,7 +20,7 @@ abstract class AppDatabase : RoomDatabase() {
                     instance = Room.databaseBuilder(
                         context.applicationContext,
                         AppDatabase::class.java,
-                        "Cancer-name3"
+                        "Cancer-name4"
                     ).build()
                 }
             }
