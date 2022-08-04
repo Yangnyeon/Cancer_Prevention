@@ -1,5 +1,6 @@
 package com.example.cancer_prevention.Retrofit
 
+import androidx.room.Entity
 import com.google.gson.annotations.SerializedName
 
 class Cancer_data_class(
@@ -22,6 +23,7 @@ class Cancer_data_class(
                 "totalCount='$totalCount')"
     }
 }
+
 data class data (
     @SerializedName("발생자수(명)") var Cancer_number:String,
     @SerializedName("분율(%)") val  Cancer_number2 :String,

@@ -55,7 +55,7 @@ class Calendar_Room : AppCompatActivity() , OnItemClick{
         val gettime = time.format(mDate)
 
         memoViewModel.readDateData(Integer.parseInt(getYear),Integer.parseInt(getMonth),Integer.parseInt(getDay)).observe(this@Calendar_Room, Observer {
-            adapter.setList(it)
+            adapter.setData(it)
             adapter.notifyDataSetChanged()
         })
 

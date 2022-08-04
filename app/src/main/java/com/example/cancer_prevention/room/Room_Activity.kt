@@ -40,7 +40,7 @@ class Room_Activity : AppCompatActivity(), OnItemClick {
         initRecyclerView()
 
         model.getAll().observe(this@Room_Activity, Observer{
-            adapter.setList(it)
+            adapter.setData(it)
             adapter.notifyDataSetChanged()
         })
 
@@ -83,7 +83,7 @@ class Room_Activity : AppCompatActivity(), OnItemClick {
 
         cigarette_count.text = count.toString()
 
-        //
+
 
     }
 
@@ -118,12 +118,11 @@ class Room_Activity : AppCompatActivity(), OnItemClick {
                  */
 
 
-
-                if(s != null){
+                if(s != null) {
                     searchDatabase(s)
-                } else {
+                } else if(s == null) {
                     model.getAll().observe(this@Room_Activity, Observer{
-                        adapter.setList(it)
+                        adapter.setData(it)
                         adapter.notifyDataSetChanged()
                     })
                 }

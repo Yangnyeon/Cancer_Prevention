@@ -53,7 +53,7 @@ class Community_Fragment : Fragment() {
             LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
         binding.rvList.adapter = adapter123
 
-        //test
+        /*test
 
         model = ViewModelProvider(this, Community_Factory(requireActivity().application))
             .get(Community_Viewmodel::class.java)
@@ -62,6 +62,8 @@ class Community_Fragment : Fragment() {
             adapter123.setList(it)
             adapter123.notifyDataSetChanged()
         })
+
+         */
 
         //
 

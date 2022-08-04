@@ -1,6 +1,8 @@
 package com.example.cancer_prevention.Community.Comment
 
 import android.content.Context
+import android.content.Context.MODE_PRIVATE
+import android.content.SharedPreferences
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +12,7 @@ import androidx.core.view.setPadding
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cancer_prevention.R
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.android.synthetic.main.activity_community_holder.*
 
 class Comment_ListAdapter(val itemList: ArrayList<Comment_ListLayout>, val context: Context): RecyclerView.Adapter<Comment_ListAdapter.ViewHolder>() {
 
@@ -22,6 +25,26 @@ class Comment_ListAdapter(val itemList: ArrayList<Comment_ListLayout>, val conte
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.Comment.text = itemList[position].Comment
         holder.date.text = itemList[position].Date
+        holder.Comment_nickname.text = itemList[position].Content_nickname
+       //holder.Comment_thumbs_count.text = itemList[position].Content_like_count.toString()
+
+        /*
+
+        var settings: SharedPreferences = getSharedPreferences("like_tmp", MODE_PRIVATE)
+
+        if(settings.getBoolean(holder_doc.toString(), false))
+        {
+            notliked.visibility = View.INVISIBLE
+            liked.visibility = View.VISIBLE
+        }
+        else
+        {
+            notliked.visibility = View.VISIBLE
+            liked.visibility = View.INVISIBLE
+        }
+
+         */
+
 
 
         holder.comment_delete.setOnClickListener {
@@ -79,6 +102,10 @@ class Comment_ListAdapter(val itemList: ArrayList<Comment_ListLayout>, val conte
 
         }
 
+        //holder.Comment_thumbsliked.setOnClickListener {
+
+        //}
+
     }
 
 
@@ -90,6 +117,10 @@ class Comment_ListAdapter(val itemList: ArrayList<Comment_ListLayout>, val conte
         val Comment: TextView = itemView.findViewById(R.id.comment123)
         val date: TextView = itemView.findViewById(R.id.comment_date123)
         val comment_delete : ImageView = itemView.findViewById(R.id.comment_delete)
+        val Comment_nickname : TextView = itemView.findViewById(R.id.comment_nickname)
+        //val Comment_thumbsliked : TextView = itemView.findViewById(R.id.thumb_liked)
+//        val Comment_thumbsnotliked : TextView = itemView.findViewById(R.id.thumb_notliked)
+//        val Comment_thumbs_count : TextView = itemView.findViewById(R.id.Comment_thumb_count)
     }
 
 }

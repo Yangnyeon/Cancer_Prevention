@@ -2,6 +2,7 @@ package com.example.cancer_prevention.room
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.example.cancer_prevention.Retrofit.data
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -24,7 +25,7 @@ interface CigaretteDao {
     @Query("SELECT * FROM Cigarette ORDER BY year DESC, month DESC, day DESC, id DESC")
     fun readAllData() : Flow<List<Cigarette>>
 
-    @Query("SELECT * FROM Cigarette WHERE content LIKE :searchQuery")
+    @Query("SELECT * FROM Cigarette WHERE content LIKE :searchQuery ORDER BY id DESC")
     fun searchDatabase(searchQuery : String) : Flow<List<Cigarette>>
 
 

@@ -13,6 +13,12 @@
         android:theme="@style/Theme.Cancer_Prevention"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".room.liver_Screen"
+            android:exported="true" />
+        <activity
+            android:name=".room.Cancer_Room"
+            android:exported="true" />
+        <activity
             android:name=".Nutrient.nutrient_screen"
             android:exported="true" />
         <activity

@@ -53,13 +53,14 @@ class CigaretteAdapter(listener: OnItemClick) : RecyclerView.Adapter<CigaretteAd
     }
 
     override fun onBindViewHolder(holder: TodoViewHolder, position: Int) {
-        holder.bind(items[position], todoViewModel = TodoViewModel(Application()))
+        holder.bind(memoList[position], todoViewModel = TodoViewModel(Application()))
     }
 
     fun setList(cigarette: List<Cigarette>) {
         items.clear()
         items.addAll(cigarette)
     }
+
 
     inner class TodoViewHolder(private val binding: TodoItemBinding):RecyclerView.ViewHolder(binding.root){
 

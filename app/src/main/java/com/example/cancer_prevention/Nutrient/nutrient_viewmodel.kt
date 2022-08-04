@@ -24,22 +24,6 @@ class nutrient_viewmodel(application: Application) : AndroidViewModel(applicatio
 
     val myResponse : MutableLiveData<Response<Cancer_data_class>> = MutableLiveData()
 
-    fun get_nutrient() {
-        viewModelScope.launch {
-            FirebaseFirestore.getInstance().collection("Nutrient")
-                .get()
-                .addOnSuccessListener { result ->
-                    for (document in result) {
-                        val user = result.toObjects(nutrient_model::class.java)
-                        binding.NutrientRecyclerView.adapter = nutrient_adapter(context, user)
-                    }
-                }
-                .addOnFailureListener {
-                    Toast.makeText(context, "실패", Toast.LENGTH_SHORT).show()
-                }
-        }
-
-    }
 
 
 

@@ -132,7 +132,9 @@ class Community_holder : AppCompatActivity() {
                             document["Date"] as String,
                             document["Doc"] as String,
                             document["comment_password"] as String,
-                            document["content_doc"] as String)
+                            document["content_doc"] as String,
+                            document["Content_nickname"] as String
+                           )
                     itemList2.add(item2)
                 }
                 adapter.notifyDataSetChanged()// 리사이클러 뷰 갱신
@@ -158,9 +160,18 @@ class Community_holder : AppCompatActivity() {
             val password_edit = EditText(this@Community_holder)
             password_edit.isSingleLine = true
 
+
+            val tvNickname = TextView(this@Community_holder)
+            tvNickname.text = "\n닉네임 입력\n"
+
+            val Nickname_edit = EditText(this@Community_holder)
+            Nickname_edit.isSingleLine = true
+
             val mLayout = LinearLayout(this@Community_holder)
             mLayout.orientation = LinearLayout.VERTICAL
             mLayout.setPadding(16)
+            mLayout.addView(tvNickname)
+            mLayout.addView(Nickname_edit)
             mLayout.addView(tvName)
             mLayout.addView(password_edit)
 
@@ -176,6 +187,7 @@ class Community_holder : AppCompatActivity() {
                 val mDate: Date = Date(currentTime)
                 val getTime = simpleDate.format(mDate)
                 val content_doc = holder_doc.toString()
+                val content_nickname =  Nickname_edit.text.toString()
 
                 val doc = UUID.randomUUID().toString()
 
@@ -185,7 +197,8 @@ class Community_holder : AppCompatActivity() {
                     "Date" to getTime.toString(),
                     "Doc" to doc,
                     "comment_password" to password_edit.text.toString(),
-                    "content_doc" to content_doc
+                    "content_doc" to content_doc,
+                    "Content_nickname" to content_nickname
                 )
 
                 db.collection("Contacts")
@@ -329,6 +342,7 @@ class Community_holder : AppCompatActivity() {
             val mLayout = LinearLayout(this@Community_holder)
             mLayout.orientation = LinearLayout.VERTICAL
             mLayout.setPadding(16)
+
             mLayout.addView(tvName)
             mLayout.addView(password_edit)
 
@@ -394,7 +408,8 @@ class Community_holder : AppCompatActivity() {
                             document["Date"] as String,
                             document["Doc"] as String,
                             document["comment_password"] as String,
-                            document["content_doc"] as String)
+                            document["content_doc"] as String,
+                            document["Content_nickname"] as String)
                     itemList2.add(item2)
                 }
                 adapter.notifyDataSetChanged()// 리사이클러 뷰 갱신

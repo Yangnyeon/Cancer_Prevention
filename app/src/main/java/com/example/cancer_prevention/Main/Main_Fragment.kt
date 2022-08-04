@@ -12,7 +12,9 @@ import com.example.cancer_prevention.Nutrient.nutrient_screen
 import com.example.cancer_prevention.Retrofit.Cancer_Retrofit
 import com.example.cancer_prevention.databinding.FragmentMainBinding
 import com.example.cancer_prevention.room.Calendar.Calendar_Room
+import com.example.cancer_prevention.room.Cancer_Room
 import com.example.cancer_prevention.room.Room_Activity
+import com.example.cancer_prevention.room.liver_Screen
 import kotlinx.android.synthetic.main.cancer_nutrient.*
 import kotlinx.android.synthetic.main.fragment_main_.*
 
@@ -52,6 +54,14 @@ class Main_Fragment : Fragment() {
 
         binding.NutrientGogo.setOnClickListener {
             startActivity(Intent(requireActivity(), nutrient_screen::class.java))
+        }
+
+        binding.gogoRetrofit2.setOnClickListener {
+            startActivity(Intent(requireActivity(), Cancer_Room::class.java))
+        }
+
+        binding.SelectCigaretteGan.setOnClickListener {
+            startActivity(Intent(requireActivity(), liver_Screen::class.java))
         }
 
 
