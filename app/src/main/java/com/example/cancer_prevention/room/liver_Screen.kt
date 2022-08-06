@@ -5,6 +5,7 @@ import android.icu.util.Calendar
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.annotation.IntegerRes
 import androidx.annotation.RequiresApi
 import com.example.cancer_prevention.R
 import kotlinx.android.synthetic.main.activity_liver_screen.*
@@ -65,6 +66,16 @@ class liver_Screen : AppCompatActivity() {
 
             }
 
+
+        }
+
+
+        edit_endDateBtn.setText(settings_Year.getString("Year","") + "년 " + settings_Month.getString("Month","") + "월 " + settings_Day.getString("Day","") + "일 ");
+
+        try {
+            edit_result.setText(getDday(Integer.parseInt(settings_Year.getString("Year","")), Integer.parseInt(settings_Month.getString("Month","")) - 1, Integer.parseInt(settings_Day.getString("Day",""))));
+        }catch (e:Exception) {
+
         }
 
 
@@ -80,13 +91,56 @@ class liver_Screen : AppCompatActivity() {
             edit_endDateBtn.setText(settings_Year.getString("Year","") + "년 " + settings_Month.getString("Month","") + "월 " + settings_Day.getString("Day",""));
 
             try {
-                edit_result.setText(getDday(Integer.parseInt(settings_Year.getString("Year","")), Integer.parseInt(settings_Month.getString("Month","")) - 1, Integer.parseInt(settings_Day.getString("Day",""))));
+                edit_result.text = getDday(Integer.parseInt(settings_Year.getString("Year","")),
+                    Integer.parseInt(settings_Month.getString("Month","")) - 1, Integer.parseInt(settings_Day.getString("Day","")))
+                //edit_result.setText(getDday(Integer.parseInt(settings_Year.getString("Year","")), Integer.parseInt(settings_Month.getString("Month","")) - 1, Integer.parseInt(settings_Day.getString("Day",""))));
             }catch (e:Exception) {
 
             }
 
             edit_result.text = "금연을 시작하세요!"
         }
+
+        var count = getDday(Integer.parseInt(settings_Year.getString("Year","")),
+            Integer.parseInt(settings_Month.getString("Month","")) - 1, Integer.parseInt(settings_Day.getString("Day","")))
+
+
+        if(count!!.toInt() == 0) {
+            liver_changer.text = "금연" + count!!.toInt() + " 일차 : 오늘부터 금연시작!"
+        }
+        else if(count!!.toInt() == 1) {
+            liver_changer.text = "금연 1 일차 : 심장마비의 위험이 \n\n 떨어집니다!"
+        } else if(count!!.toInt() == 2) {
+            liver_changer.text = "금연 2 일차 : 신경 말단 부위가 니코틴이 사라져 \n\n 후각과 미각이 더 좋아지고 더 선명한 맛이 느껴\n\n집니다!"
+        } else if(count!!.toInt() >= 3 && count!!.toInt() <= 13) {
+            liver_changer.text = "금연" + count!!.toInt() + " 일차 : 신체의 니코틴 수치가 \n\n 감소합니다! 기관지가 이완되며 호흡이 쉬워지며 \n\n 폐활량도 증가합니다.!"
+        } else if(count!!.toInt() >= 14 && count!!.toInt() <= 269) {
+            liver_changer.text = "금연" + count!!.toInt() + " 일차 : 혈액순환이 좋아집니다! \n\n 걷기가 쉬워지며 \n\n폐 기능이 30% 증가합니다.!"
+        } else if(count!!.toInt() >= 270 && count!!.toInt() <= 364) {
+            liver_changer.text = "금연" + count!!.toInt() + " 일차 : 기침,피곤,산소 부족과 같은 증상이 모두 감소했습니다! \n\n 신체의 전반적인 에너지 수준도 높아졋습니다!"
+        } else if(count!!.toInt() >= 365 && count!!.toInt() <= 1824) {
+            liver_changer.text = "금연" + count!!.toInt() + " 일차 : 심장마비로 인한 사망 \n\n 위험이 흡연자에 비해 절반으로\n\n떨어졋습니다!"
+        } else if(count!!.toInt() >= 1825) {
+            liver_changer.text = "금연" + count!!.toInt() + " 일차 : 담배로 인해 좁아진 혈관이 다시 넓어지며 혈전 발생 위험이 줄어들어\n\n 심혈관질환의 위험이 감소했습니다!"
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     }
@@ -114,7 +168,7 @@ class liver_Screen : AppCompatActivity() {
             strFormat = "오늘부터 시작?"
         } else {
             result *= -1
-            strFormat = "금연한지 %d 일"
+            strFormat = "%d"
         }
         return String.format(strFormat, result)
     }
