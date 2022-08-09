@@ -10,10 +10,6 @@
     >
 
 
-
-
-
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -33,8 +29,7 @@
                     android:id="@+id/viewpager11"
                     android:layout_width="350sp"
                     android:layout_height="200sp"
-                    android:layout_centerInParent="true">
-                </androidx.viewpager.widget.ViewPager>
+                    android:layout_centerInParent="true"></androidx.viewpager.widget.ViewPager>
 
 
             </RelativeLayout>
@@ -345,7 +340,7 @@
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/gogo_retrofit"
-                        android:layout_width="350sp"
+                        android:layout_width="330sp"
                         android:layout_height="180sp"
                         android:layout_marginLeft="10sp"
                         android:layout_marginTop="10sp"
@@ -357,7 +352,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/retrofit_image"
+                            android:background="@drawable/statics_image"
                             android:orientation="vertical">
 
 
@@ -365,10 +360,10 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20sp"
-                                android:layout_marginTop="130sp"
                                 android:fontFamily="@font/jua"
                                 android:text="암 통계"
-                                android:textColor="#000000"
+                                android:textColor="#9C27B0"
+                                android:layout_marginTop="20sp"
                                 android:textSize="25sp"
                                 android:textStyle="bold"></TextView>
 
@@ -381,7 +376,7 @@
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/gogo_retrofit2"
-                        android:layout_width="350sp"
+                        android:layout_width="330sp"
                         android:layout_height="180sp"
                         android:layout_marginLeft="10sp"
                         android:layout_marginTop="10sp"
@@ -402,10 +397,10 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="20sp"
-                                android:layout_marginTop="130sp"
+                                android:layout_marginTop="20sp"
                                 android:fontFamily="@font/jua"
                                 android:text="암 예방 수칙"
-                                android:textColor="#000000"
+                                android:textColor="#9C27B0"
                                 android:textSize="25sp"
                                 android:textStyle="bold"></TextView>
 
