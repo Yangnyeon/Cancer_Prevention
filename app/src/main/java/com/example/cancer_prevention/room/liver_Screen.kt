@@ -5,9 +5,17 @@ import android.icu.util.Calendar
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.widget.EditText
+import android.widget.LinearLayout
+import android.widget.TextView
+import android.widget.Toast
 import androidx.annotation.IntegerRes
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AlertDialog
+import androidx.core.view.setPadding
 import com.example.cancer_prevention.R
+import kotlinx.android.synthetic.main.activity_community_holder.*
 import kotlinx.android.synthetic.main.activity_liver_screen.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -49,24 +57,48 @@ class liver_Screen : AppCompatActivity() {
 
         no_smoking_start.setOnClickListener {
 
-            editor_Year.putString("Year", getYear.toString())
-            editor_Year.commit()
+            val comment_builder = AlertDialog.Builder(this@liver_Screen)
 
-            editor_Month.putString("Month", getMonth.toString())
-            editor_Month.commit()
 
-            editor_Day.putString("Day", getDay.toString())
-            editor_Day.commit()
+            // 대화상자에 텍스트 입력 필드 추가, 대충 만들었음
+            val tvName = TextView(this@liver_Screen)
+            tvName.text = "금연을 시작하시겠습니까?\n\n"
 
-            edit_endDateBtn.setText(settings_Year.getString("Year","") + "년 " + settings_Month.getString("Month","") + "월 " + settings_Day.getString("Day","") + "일 ");
+            val mLayout = LinearLayout(this@liver_Screen)
+            mLayout.orientation = LinearLayout.VERTICAL
+            mLayout.setPadding(16)
+            mLayout.addView(tvName)
 
-            try {
-                edit_result.setText(getDday(Integer.parseInt(settings_Year.getString("Year","")), Integer.parseInt(settings_Month.getString("Month","")) - 1, Integer.parseInt(settings_Day.getString("Day",""))));
-            }catch (e:Exception) {
+
+            comment_builder.setView(mLayout)
+
+            comment_builder.setTitle("금연 시작")
+            comment_builder.setPositiveButton("확인") { dialog, which ->
+
+                editor_Year.putString("Year", getYear.toString())
+                editor_Year.commit()
+
+                editor_Month.putString("Month", getMonth.toString())
+                editor_Month.commit()
+
+                editor_Day.putString("Day", getDay.toString())
+                editor_Day.commit()
+
+                edit_endDateBtn.setText(settings_Year.getString("Year","") + "년 " + settings_Month.getString("Month","") + "월 " + settings_Day.getString("Day","") + "일 ");
+
+                try {
+                    edit_result.setText(getDday(Integer.parseInt(settings_Year.getString("Year","")), Integer.parseInt(settings_Month.getString("Month","")) - 1, Integer.parseInt(settings_Day.getString("Day",""))));
+                }catch (e:Exception) {
+
+                }
+
+                liver_changer.text = "금연 0 일차 : 오늘부터 금연시작!"
 
             }
+            comment_builder.setNegativeButton("취소") { dialog, which ->
 
-
+            }
+            comment_builder.show()
         }
 
 
@@ -80,49 +112,90 @@ class liver_Screen : AppCompatActivity() {
 
 
         no_smoking_start_delete.setOnClickListener {
-            editor_Year.remove("Year")
-            editor_Year.commit()
-            editor_Month.remove("Month")
-            editor_Month.commit()
-            editor_Day.remove("Day")
-            editor_Day.commit()
 
 
-            edit_endDateBtn.setText(settings_Year.getString("Year","") + "년 " + settings_Month.getString("Month","") + "월 " + settings_Day.getString("Day",""));
+            val comment_builder = AlertDialog.Builder(this@liver_Screen)
 
-            try {
-                edit_result.text = getDday(Integer.parseInt(settings_Year.getString("Year","")),
-                    Integer.parseInt(settings_Month.getString("Month","")) - 1, Integer.parseInt(settings_Day.getString("Day","")))
-                //edit_result.setText(getDday(Integer.parseInt(settings_Year.getString("Year","")), Integer.parseInt(settings_Month.getString("Month","")) - 1, Integer.parseInt(settings_Day.getString("Day",""))));
-            }catch (e:Exception) {
+
+            // 대화상자에 텍스트 입력 필드 추가, 대충 만들었음
+            val tvName = TextView(this@liver_Screen)
+            tvName.text = "금연을 포기하시겠습니까..?\n\n"
+
+            val mLayout = LinearLayout(this@liver_Screen)
+            mLayout.orientation = LinearLayout.VERTICAL
+            mLayout.setPadding(16)
+            mLayout.addView(tvName)
+
+
+            comment_builder.setView(mLayout)
+
+            comment_builder.setTitle("흡연 시작")
+            comment_builder.setPositiveButton("확인") { dialog, which ->
+
+                editor_Year.remove("Year")
+                editor_Year.commit()
+                editor_Month.remove("Month")
+                editor_Month.commit()
+                editor_Day.remove("Day")
+                editor_Day.commit()
+
+
+                edit_endDateBtn.setText(settings_Year.getString("Year","") + "년 " + settings_Month.getString("Month","") + "월 " + settings_Day.getString("Day",""));
+
+                try {
+                    edit_result.text = getDday(Integer.parseInt(settings_Year.getString("Year","")),
+                        Integer.parseInt(settings_Month.getString("Month","")) - 1, Integer.parseInt(settings_Day.getString("Day","")))
+                    //edit_result.setText(getDday(Integer.parseInt(settings_Year.getString("Year","")), Integer.parseInt(settings_Month.getString("Month","")) - 1, Integer.parseInt(settings_Day.getString("Day",""))));
+                }catch (e:Exception) {
+
+                }
+
+                edit_result.text = "금연을 시작하세요!"
+                liver_changer.text = "금연을 시작해보세요!"
 
             }
+            comment_builder.setNegativeButton("취소") { dialog, which ->
 
-            edit_result.text = "금연을 시작하세요!"
+            }
+            comment_builder.show()
+
         }
 
-        var count = getDday(Integer.parseInt(settings_Year.getString("Year","")),
-            Integer.parseInt(settings_Month.getString("Month","")) - 1, Integer.parseInt(settings_Day.getString("Day","")))
+        try {
+            var count = getDday(Integer.parseInt(settings_Year.getString("Year","")),
+                Integer.parseInt(settings_Month.getString("Month","")) - 1, Integer.parseInt(settings_Day.getString("Day","")))
+
+            if(count!!.toInt() == 0) {
+                liver_changer.text = "금연" + count!!.toInt() + " 일차 : 오늘부터 금연시작!"
+            }
+            else if(count!!.toInt() == 1) {
+                liver_changer.text = "금연 1 일차 : 심장마비의 위험이 \n\n 떨어집니다!"
+            } else if(count!!.toInt() == 2) {
+                liver_changer.text = "금연 2 일차 : 신경 말단 부위가 니코틴이 사라져 \n\n 후각과 미각이 더 좋아지고 더 선명한 맛이 느껴\n\n집니다!"
+            } else if(count!!.toInt() >= 3 && count!!.toInt() <= 13) {
+                liver_changer.text = "금연" + count!!.toInt() + " 일차 : 신체의 니코틴 수치가 \n\n 감소합니다! 기관지가 이완되며 호흡이 쉬워지며 \n\n 폐활량도 증가합니다.!"
+            } else if(count!!.toInt() >= 14 && count!!.toInt() <= 269) {
+                liver_changer.text = "금연" + count!!.toInt() + " 일차 : 혈액순환이 좋아집니다! \n\n 걷기가 쉬워지며 \n\n폐 기능이 30% 증가합니다.!"
+            } else if(count!!.toInt() >= 270 && count!!.toInt() <= 364) {
+                liver_changer.text = "금연" + count!!.toInt() + " 일차 : 기침,피곤,산소 부족과 같은 증상이 모두 감소했습니다! \n\n 신체의 전반적인 에너지 수준도 높아졋습니다!"
+            } else if(count!!.toInt() >= 365 && count!!.toInt() <= 1824) {
+                liver_changer.text = "금연" + count!!.toInt() + " 일차 : 심장마비로 인한 사망 \n\n 위험이 흡연자에 비해 절반으로\n\n떨어졋습니다!"
+            } else if(count!!.toInt() >= 1825) {
+                liver_changer.text = "금연" + count!!.toInt() + " 일차 : 담배로 인해 좁아진 혈관이 다시 넓어지며 혈전 발생 위험이 줄어들어\n\n 심혈관질환의 위험이 감소했습니다!"
+            } else {
+                edit_endDateBtn.text = ""
+                liver_changer.text = "금연을 시작해보세요!"
+            }
+
+        } catch(e: Exception) {
+
+        }
 
 
-        if(count!!.toInt() == 0) {
-            liver_changer.text = "금연" + count!!.toInt() + " 일차 : 오늘부터 금연시작!"
-        }
-        else if(count!!.toInt() == 1) {
-            liver_changer.text = "금연 1 일차 : 심장마비의 위험이 \n\n 떨어집니다!"
-        } else if(count!!.toInt() == 2) {
-            liver_changer.text = "금연 2 일차 : 신경 말단 부위가 니코틴이 사라져 \n\n 후각과 미각이 더 좋아지고 더 선명한 맛이 느껴\n\n집니다!"
-        } else if(count!!.toInt() >= 3 && count!!.toInt() <= 13) {
-            liver_changer.text = "금연" + count!!.toInt() + " 일차 : 신체의 니코틴 수치가 \n\n 감소합니다! 기관지가 이완되며 호흡이 쉬워지며 \n\n 폐활량도 증가합니다.!"
-        } else if(count!!.toInt() >= 14 && count!!.toInt() <= 269) {
-            liver_changer.text = "금연" + count!!.toInt() + " 일차 : 혈액순환이 좋아집니다! \n\n 걷기가 쉬워지며 \n\n폐 기능이 30% 증가합니다.!"
-        } else if(count!!.toInt() >= 270 && count!!.toInt() <= 364) {
-            liver_changer.text = "금연" + count!!.toInt() + " 일차 : 기침,피곤,산소 부족과 같은 증상이 모두 감소했습니다! \n\n 신체의 전반적인 에너지 수준도 높아졋습니다!"
-        } else if(count!!.toInt() >= 365 && count!!.toInt() <= 1824) {
-            liver_changer.text = "금연" + count!!.toInt() + " 일차 : 심장마비로 인한 사망 \n\n 위험이 흡연자에 비해 절반으로\n\n떨어졋습니다!"
-        } else if(count!!.toInt() >= 1825) {
-            liver_changer.text = "금연" + count!!.toInt() + " 일차 : 담배로 인해 좁아진 혈관이 다시 넓어지며 혈전 발생 위험이 줄어들어\n\n 심혈관질환의 위험이 감소했습니다!"
-        }
+
+
+
+
 
 
 
@@ -165,7 +238,7 @@ class liver_Screen : AppCompatActivity() {
         if (result > 0) {
             strFormat = "D-%d"
         } else if (result == 0L) {
-            strFormat = "오늘부터 시작?"
+            strFormat = "%d"
         } else {
             result *= -1
             strFormat = "%d"

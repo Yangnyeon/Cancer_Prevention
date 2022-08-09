@@ -40,7 +40,8 @@ class Room_Activity : AppCompatActivity(), OnItemClick {
         initRecyclerView()
 
         model.getAll().observe(this@Room_Activity, Observer{
-            adapter.setData(it)
+            adapter.setList(it)
+            //adapter.setData(it) 검색
             adapter.notifyDataSetChanged()
         })
 

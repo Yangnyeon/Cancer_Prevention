@@ -49,11 +49,11 @@ class CigaretteAdapter(listener: OnItemClick) : RecyclerView.Adapter<CigaretteAd
     }
 
     override fun getItemCount(): Int {
-        return memoList.size
+        return items.size
     }
 
     override fun onBindViewHolder(holder: TodoViewHolder, position: Int) {
-        holder.bind(memoList[position], todoViewModel = TodoViewModel(Application()))
+        holder.bind(items[position], todoViewModel = TodoViewModel(Application()))
     }
 
     fun setList(cigarette: List<Cigarette>) {

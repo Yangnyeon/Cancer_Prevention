@@ -1,6 +1,8 @@
 package com.example.cancer_prevention.Community
 
+import android.app.ProgressDialog
 import android.content.Intent
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -34,6 +36,9 @@ class Community_Fragment : Fragment() {
 
     //test
 
+
+
+
     private lateinit var model: Community_Viewmodel
 
     override fun onCreateView(
@@ -45,9 +50,13 @@ class Community_Fragment : Fragment() {
 
         val adapter123 = ListAdapter(itemList, requireActivity())   // 리사이클러 뷰 어댑터
 
+        val loadingAnimDialog = loading_screen(requireActivity())
+
+        loadingAnimDialog.window!!.setBackgroundDrawable(ColorDrawable(android.graphics.Color.TRANSPARENT))
+
+        loadingAnimDialog.show()
+
         binding.btnRead.performClick()
-
-
 
         binding.rvList.layoutManager =
             LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
@@ -68,11 +77,16 @@ class Community_Fragment : Fragment() {
         //
 
 
+
+
         db.collection("Contacts") // 작업할 컬렉션
             .orderBy("com_date", Query.Direction.DESCENDING)
             .get() // 문서 가져오기
             .addOnSuccessListener { result ->
                 // 성공할 경우
+
+                loadingAnimDialog.dismiss()
+
                 itemList.clear()
                 for (document in result) {  // 가져온 문서들은 result에 들어감
                     val item =

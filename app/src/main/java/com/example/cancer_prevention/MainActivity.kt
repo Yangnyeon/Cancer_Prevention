@@ -4,6 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.cancer_prevention.Community.Community_Fragment
+import com.example.cancer_prevention.Introduce.Introduce_Screen
+import com.example.cancer_prevention.Main.Intro_Screen
 import com.example.cancer_prevention.Main.Main_Fragment
 import com.example.cancer_prevention.Retrofit.Cancer_Retrofit
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -39,6 +41,11 @@ class MainActivity : AppCompatActivity() {
                         val MainFragment2 = Community_Fragment()
                         supportFragmentManager.beginTransaction().replace(R.id.container, MainFragment2).commit()
                     }
+                    R.id.third -> {
+                        val MainFragment3 = Introduce_Screen()
+                        supportFragmentManager.beginTransaction().replace(R.id.container, MainFragment3).commit()
+                    }
+
                 }
                 true
             }
