@@ -10,6 +10,14 @@ import io.reactivex.rxjava3.subjects.ReplaySubject
 import kotlinx.android.synthetic.main.activity_rx_java_tranning.*
 
 
+import android.widget.TextView
+
+import android.util.Log
+import android.view.View
+import io.reactivex.rxjava3.internal.operators.observable.ObservableFromIterable
+import java.util.concurrent.Callable
+
+
 class Rx_java_tranning : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +39,8 @@ class Rx_java_tranning : AppCompatActivity() {
 
          */
 
+        /*
+
         var haha = ArrayList<String>()
         haha.add("어어")
         haha.add("끅끅끅")
@@ -40,10 +50,15 @@ class Rx_java_tranning : AppCompatActivity() {
 
         source4.subscribe{x : String? -> rx_java.append(x)}
 
+         */
 
+
+
+
+
+        //0809
 
         /*
-
         val source: Observable<String> = Observable.create { emitter ->
             emitter.onNext("Hello")
             emitter.onNext("Yena")
@@ -52,7 +67,42 @@ class Rx_java_tranning : AppCompatActivity() {
 
         source.subscribe{ x : String? -> rx_java.append(x + "\n")}
 
+
          */
+
+        /*
+        var names = ArrayList<String>()
+
+        names.add("하하")
+        names.add("민어어엄")
+
+        val sources : Observable<String> = ObservableFromIterable(names)
+
+        sources.subscribe{x : String -> rx_java.append(x + " ")}
+
+         */
+
+        /*
+
+        var names = ArrayList<String>()
+
+        names.add("하하")
+        names.add("민어어엄")
+
+        val callable: Callable<String> = Callable<String> {
+            Thread.sleep(3000)
+            "Hello Callable"
+        }
+
+        val sources : Observable<String> = Observable.fromCallable(callable)
+        sources.subscribe{x : String? -> rx_java.append(x + " ")}
+
+        val sources2 : Observable<String> = ObservableFromIterable(names)
+        sources2.subscribe{x : String? -> rx_java.append(x + " ")}
+
+         */
+
+
 
 
     }

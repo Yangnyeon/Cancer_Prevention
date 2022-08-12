@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Community.Comunity_Write"
+    tools:context=".Community.Community_Write"
     android:orientation="vertical"
+    android:background="@drawable/divorce_button_image2"
     >
 
     <ScrollView
@@ -98,14 +99,33 @@
 
             </LinearLayout>
 
-
-            <Button
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="입력"
-                android:id="@+id/input"
-                android:layout_gravity="end"
-                ></Button>
+                android:orientation="horizontal"
+                >
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="이미지 업로드"
+                    android:id="@+id/imageIV"
+                    ></Button>
+
+
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="입력"
+                    android:id="@+id/input"
+                    android:layout_alignParentEnd="true"
+                    ></Button>
+
+            </RelativeLayout>
+
+
+
 
         </LinearLayout>
 
