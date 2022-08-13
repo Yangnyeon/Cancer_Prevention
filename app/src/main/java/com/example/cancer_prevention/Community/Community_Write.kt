@@ -2,6 +2,8 @@ package com.example.cancer_prevention.Community
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -32,6 +34,11 @@ class Community_Write : AppCompatActivity() {
 
     //
 
+    val itemList = arrayListOf<ListLayout>()
+
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_community_write)
@@ -39,9 +46,11 @@ class Community_Write : AppCompatActivity() {
         storage = FirebaseStorage.getInstance()
 
 
+
         input.setOnClickListener(View.OnClickListener {
+
             saveNote()
-            finish()
+
         })
 
 
@@ -73,6 +82,12 @@ class Community_Write : AppCompatActivity() {
 
         val doc = UUID.randomUUID().toString()
 
+        val loadingAnimDialog = loading_screen(this@Community_Write)
+
+        loadingAnimDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        loadingAnimDialog.show()
+
         if (selectImage != null) {
             if (title.trim { it <= ' ' }.isEmpty() || description.isEmpty()) {
                 Toast.makeText(this, "입력하세요", Toast.LENGTH_SHORT).show()
@@ -102,6 +117,15 @@ class Community_Write : AppCompatActivity() {
                                 .document(doc)
                                 .set(data)
                                 .addOnSuccessListener {
+
+                                    loadingAnimDialog.dismiss()
+
+                                    Toast.makeText(
+                                        this@Community_Write,
+                                        "게시물이 업로드 되었습니다!",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+
                                     finish()
                                 }
                                 .addOnFailureListener { exception ->
@@ -135,6 +159,9 @@ class Community_Write : AppCompatActivity() {
                     .document(doc)
                     .set(data)
                     .addOnSuccessListener {
+
+                        loadingAnimDialog.dismiss()
+
                         // 성공할 경우
                         Toast.makeText(this@Community_Write, "데이터가 추가되었습니다", Toast.LENGTH_SHORT)
                             .show()

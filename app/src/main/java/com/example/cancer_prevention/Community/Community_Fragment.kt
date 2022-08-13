@@ -9,7 +9,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.core.app.ActivityCompat.recreate
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -36,9 +38,6 @@ class Community_Fragment : Fragment() {
 
     //test
 
-
-
-
     private lateinit var model: Community_Viewmodel
 
     override fun onCreateView(
@@ -58,25 +57,8 @@ class Community_Fragment : Fragment() {
 
         binding.btnRead.performClick()
 
-        binding.rvList.layoutManager =
-            LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
+        binding.rvList.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
         binding.rvList.adapter = adapter123
-
-        /*test
-
-        model = ViewModelProvider(this, Community_Factory(requireActivity().application))
-            .get(Community_Viewmodel::class.java)
-
-        model.get_Community().observe(requireActivity(), Observer{
-            adapter123.setList(it)
-            adapter123.notifyDataSetChanged()
-        })
-
-         */
-
-        //
-
-
 
 
         db.collection("Contacts") // 작업할 컬렉션
@@ -134,18 +116,35 @@ class Community_Fragment : Fragment() {
 
         val adapter123 = ListAdapter(itemList, requireActivity())   // 리사이클러 뷰 어댑터
 
+        //
+
+        binding.rvList.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
+        binding.rvList.adapter = adapter123
+
+        //
+
+        val loadingAnimDialog = loading_screen(requireActivity())
+
+        loadingAnimDialog.window!!.setBackgroundDrawable(ColorDrawable(android.graphics.Color.TRANSPARENT))
+
+        loadingAnimDialog.show()
+
         db.collection("Contacts") // 작업할 컬렉션
             .orderBy("com_date", Query.Direction.DESCENDING)
             .get() // 문서 가져오기
             .addOnSuccessListener { result ->
                 // 성공할 경우
+
+                loadingAnimDialog.dismiss()
+
                 itemList.clear()
                 for (document in result) {  // 가져온 문서들은 result에 들어감
                     val item =
                         ListLayout(document["name"] as String, document["number"] as String,
                             document["com_date"] as String?, document["password"] as String,
-                            document["doc"] as String, document["nickname"] as String, document["liked"] as Long,  document["eye_count"] as Long)
+                            document["doc"] as String, document["nickname"] as String, document["liked"] as Long, document["eye_count"] as Long, document["imageUrl"] as String)
                     itemList.add(item)
+
                 }
                 adapter123.notifyDataSetChanged()// 리사이클러 뷰 갱신
             }
@@ -154,9 +153,10 @@ class Community_Fragment : Fragment() {
                 Log.w("MainActivity", "Error getting documents: $exception")
             }
 
-
     }
 
-
-
+    override fun onResume() {
+        super.onResume()
+        update()
+    }
 }

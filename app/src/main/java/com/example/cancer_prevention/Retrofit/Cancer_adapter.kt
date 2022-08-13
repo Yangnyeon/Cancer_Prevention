@@ -39,7 +39,7 @@ class Cancer_adapter(var myList: List<data> = ArrayList<data>()) : RecyclerView.
 
     override fun onBindViewHolder(holder: Cancer_adapter.MyViewHolder, position: Int) {
 
-        holder.binding.CancerHolder1.text = "암 종류 : " + myList[position].Cancer_number3
+        holder.binding.CancerHolder1.text = myList[position].Cancer_number3 + " 암"
         holder.binding.CancerHolder2.text = "분율 : " + myList[position].Cancer_number2 + "%"
         holder.binding.CancerHolder3.text = "발생자수 : " + myList[position].Cancer_number + "명"
         holder.binding.CancerHolder4.text = "연령표준화발생률(명/10만명) : " + myList[position].Cancer_number4

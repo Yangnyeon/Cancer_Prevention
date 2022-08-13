@@ -43,8 +43,6 @@ class Community_holder : AppCompatActivity() {
         setContentView(R.layout.activity_community_holder)
 
 
-
-
         binding = ActivityCommunityHolderBinding.inflate(layoutInflater)
         val view = binding.root
         //setContentView(R.layout.activity_cloud_firestore)

@@ -41,9 +41,9 @@
             android:exported="true"
             tools:ignore="DuplicateActivity" />
         <activity
-            android:name=".Community_Write"
+            android:name=".Community.Community_Write"
             android:exported="true"
-            tools:ignore="MissingClass" />
+            tools:ignore="DuplicateActivity,MissingClass" />
         <activity
             android:name=".room.Calendar.Calendar_Room"
             android:exported="true" />
