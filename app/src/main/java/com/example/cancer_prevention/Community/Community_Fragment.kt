@@ -92,7 +92,7 @@ class Community_Fragment : Fragment() {
                     val item =
                         ListLayout(document["name"] as String, document["number"] as String,
                             document["com_date"] as String?, document["password"] as String,
-                            document["doc"] as String, document["nickname"] as String, document["liked"] as Long, document["eye_count"] as Long)
+                            document["doc"] as String, document["nickname"] as String, document["liked"] as Long, document["eye_count"] as Long, document["imageUrl"] as String)
                     itemList.add(item)
                 }
                 adapter123.notifyDataSetChanged()// 리사이클러 뷰 갱신
@@ -156,5 +156,7 @@ class Community_Fragment : Fragment() {
 
 
     }
+
+
 
 }

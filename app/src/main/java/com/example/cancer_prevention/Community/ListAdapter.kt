@@ -6,8 +6,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.cancer_prevention.R
 import com.example.cancer_prevention.room.Cigarette
 import com.google.firebase.firestore.FieldValue
@@ -34,6 +37,9 @@ class ListAdapter(val itemList: ArrayList<ListLayout>,val context: Context): Rec
         holder.nickname.text = itemList[position].Nickname
         holder.like_count.text = itemList[position].liked.toString()
         holder.eye_count.text = itemList[position].eye.toString()
+        var photo= itemList[position]
+        holder.bind(photo)
+
 
 
         val db = FirebaseFirestore.getInstance()
@@ -89,7 +95,7 @@ class ListAdapter(val itemList: ArrayList<ListLayout>,val context: Context): Rec
 
     }
 
-    class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+    inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val name: TextView = itemView.findViewById(R.id.list_tv_name)
         val content : TextView = itemView.findViewById(R.id.list_tv_content)
         val community_date : TextView = itemView.findViewById(R.id.list_tv_date)
@@ -97,10 +103,16 @@ class ListAdapter(val itemList: ArrayList<ListLayout>,val context: Context): Rec
         val like_count = itemView.findViewById<TextView>(R.id.thumb_count)
         val nickname = itemView.findViewById<TextView>(R.id.list_tv_nickname)
         val eye_count = itemView.findViewById<TextView>(R.id.eye_count)
+
+        var imageIv: ImageView = itemView.findViewById(R.id.list_image)
+
+        fun bind(listlayout:ListLayout){
+            Glide.with(context).load(listlayout.imageUrl).fallback(R.drawable.ic_baseline_add_a_photo_24)
+                .error(R.drawable.ic_baseline_add_a_photo_24)
+                .into(imageIv)
+        }
+
     }
 
-    fun setList(cigarette: List<ListLayout>) {
-        itemList.clear()
-        itemList.addAll(cigarette)
-    }
+
 }

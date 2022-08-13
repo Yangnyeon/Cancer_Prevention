@@ -105,22 +105,33 @@
                 android:orientation="horizontal"
                 >
 
-                <Button
+
+
+                <ImageView
+                    android:id="@+id/image_upload"
+                    android:layout_width="100sp"
+                    android:layout_height="100sp"
+                    android:src="@drawable/ic_baseline_add_a_photo_24"
+                    ></ImageView>
+
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="이미지 업로드"
-                    android:id="@+id/imageIV"
-                    ></Button>
-
+                    android:textSize="14sp"
+                    android:fontFamily="@font/jua"
+                    android:text="이미지 추가"
+                    android:layout_toRightOf="@id/image_upload"
+                    android:layout_alignParentBottom="true"
+                    ></TextView>
 
 
                 <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="입력"
                     android:id="@+id/input"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    ></Button>
+                    android:layout_alignParentBottom="true"
+                    android:text="입력"></Button>
 
             </RelativeLayout>
 

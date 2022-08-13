@@ -35,20 +35,40 @@
                 ></TextView>
 
 
+            <ImageView
+                android:layout_width="100sp"
+                android:layout_height="100sp"
+                android:src="@drawable/ic_baseline_add_a_photo_24"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/list_image"
+                ></ImageView>
+
+
 
         </LinearLayout>
 
 
-        <TextView
-            android:id="@+id/list_tv_content"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8sp"
-            android:layout_marginTop="30sp"
-            android:fontFamily="@font/jua"
-            android:text="Description"
-            android:textColor="#000000"
-            android:textSize="18sp"></TextView>
+            >
+
+            <TextView
+                android:id="@+id/list_tv_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8sp"
+
+                android:fontFamily="@font/jua"
+                android:text="Description"
+                android:maxLines="1"
+                android:textColor="#000000"
+                android:textSize="18sp">
+            </TextView>
+
+        </RelativeLayout>
+
+
 
 
         <RelativeLayout

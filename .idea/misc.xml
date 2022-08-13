@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/user/AndroidStudioProjects/Cancer_Prevention/app/src/main/res/drawable/ic_baseline_add_a_photo_24.xml" value="0.11354166666666667" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Cancer_Prevention/app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.14166666666666666" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Cancer_Prevention/app/src/main/res/drawable/ic_baseline_house_24.xml" value="0.14270833333333333" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Cancer_Prevention/app/src/main/res/drawable/ic_baseline_local_hospital_24.xml" value="0.14270833333333333" />
@@ -12,7 +13,7 @@
         <entry key="..\:/Users/user/AndroidStudioProjects/Cancer_Prevention/app/src/main/res/layout/activity_cancer_retrofit.xml" value="0.176" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Cancer_Prevention/app/src/main/res/layout/activity_cancer_room.xml" value="0.121875" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Cancer_Prevention/app/src/main/res/layout/activity_comment_list.xml" value="0.21557971014492755" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Cancer_Prevention/app/src/main/res/layout/activity_community_holder.xml" value="0.21557971014492755" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Cancer_Prevention/app/src/main/res/layout/activity_community_holder.xml" value="0.1" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Cancer_Prevention/app/src/main/res/layout/activity_community_holder2.xml" value="0.21557971014492755" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Cancer_Prevention/app/src/main/res/layout/activity_community_write.xml" value="0.21557971014492755" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Cancer_Prevention/app/src/main/res/layout/activity_corutine.xml" value="0.12916666666666668" />

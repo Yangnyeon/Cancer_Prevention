@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.setPadding
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.example.cancer_prevention.Community.Comment.Comment_ListAdapter
 import com.example.cancer_prevention.Community.Comment.Comment_ListLayout
 import com.example.cancer_prevention.R
@@ -101,6 +102,10 @@ class Community_holder : AppCompatActivity() {
                         board_nickname.text = "${getString("nickname")}"
                         likes.text = "${getLong("liked")}"
                         eye_holder_count.text = "조회수 : ${getLong("eye_count")}"
+                        Glide.with(this@Community_holder)
+                            .load("${getString("imageUrl")}")
+                            .fallback(null)
+                            .into(real_holder_image)
                     }
                 } catch (e: Exception) {
                     Toast.makeText(this@Community_holder, e.toString() , Toast.LENGTH_SHORT).show()
