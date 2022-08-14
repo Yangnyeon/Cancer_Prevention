@@ -136,7 +136,8 @@ class Community_holder : AppCompatActivity() {
                             document["Doc"] as String,
                             document["comment_password"] as String,
                             document["content_doc"] as String,
-                            document["Content_nickname"] as String
+                            document["Content_nickname"] as String,
+                            document["Comment_liked"] as Long
                            )
                     itemList2.add(item2)
                 }
@@ -148,6 +149,8 @@ class Community_holder : AppCompatActivity() {
             }
 
         //
+
+
 
         //댓글입력
 
@@ -201,7 +204,8 @@ class Community_holder : AppCompatActivity() {
                     "Doc" to doc,
                     "comment_password" to password_edit.text.toString(),
                     "content_doc" to content_doc,
-                    "Content_nickname" to content_nickname
+                    "Content_nickname" to content_nickname,
+                    "Comment_liked" to 0.toLong()
                 )
 
                 db.collection("Contacts")
@@ -214,6 +218,8 @@ class Community_holder : AppCompatActivity() {
                         Toast.makeText(this, "데이터가 추가되었습니다", Toast.LENGTH_SHORT).show()
 
                         update()
+
+
                         //go_board2.putExtra("board_doc", it.toString())
                         // startActivity(go_board2)
                     }
@@ -412,10 +418,12 @@ class Community_holder : AppCompatActivity() {
                             document["Doc"] as String,
                             document["comment_password"] as String,
                             document["content_doc"] as String,
-                            document["Content_nickname"] as String)
+                            document["Content_nickname"] as String,
+                            document["Comment_liked"] as Long)
                     itemList2.add(item2)
                 }
                 adapter.notifyDataSetChanged()// 리사이클러 뷰 갱신
+                comment_edit.setText("")
             }
             .addOnFailureListener { exception ->
                 // 실패할 경우

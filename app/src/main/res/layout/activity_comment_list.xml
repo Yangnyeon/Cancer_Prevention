@@ -100,8 +100,7 @@
             android:layout_marginBottom="16sp"
             android:layout_toLeftOf="@id/Comment_thumb_count"
             android:src="@drawable/ic_baseline_thumb_up_off_alt_24"
-            android:visibility="visible"
-            ></ImageView>
+            android:visibility="visible"></ImageView>
 
 
         <TextView

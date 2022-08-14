@@ -11,10 +11,14 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.view.setPadding
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cancer_prevention.R
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_community_holder.*
 
 class Comment_ListAdapter(val itemList: ArrayList<Comment_ListLayout>, val context: Context): RecyclerView.Adapter<Comment_ListAdapter.ViewHolder>() {
+
+
+
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Comment_ListAdapter.ViewHolder {
@@ -26,7 +30,97 @@ class Comment_ListAdapter(val itemList: ArrayList<Comment_ListLayout>, val conte
         holder.Comment.text = itemList[position].Comment
         holder.date.text = itemList[position].Date
         holder.Comment_nickname.text = itemList[position].Content_nickname
-       //holder.Comment_thumbs_count.text = itemList[position].Content_like_count.toString()
+        holder.Comment_thumbs_count.text = itemList[position].Comment_liked.toString()
+
+        var settings: SharedPreferences = context.getSharedPreferences("Comment_like_tmp", MODE_PRIVATE)
+
+        var editor: SharedPreferences.Editor = settings.edit()
+
+        val db = FirebaseFirestore.getInstance()
+
+        if(settings.getBoolean(itemList[position].Doc.toString(), false))
+        {
+            holder.Comment_thumbsnotliked.visibility = View.INVISIBLE
+            holder.Comment_thumbsliked.visibility = View.VISIBLE
+        }
+        else
+        {
+            holder.Comment_thumbsnotliked.visibility = View.VISIBLE
+            holder.Comment_thumbsliked.visibility = View.INVISIBLE
+        }
+
+        holder.Comment_thumbsliked.setOnClickListener {
+            holder.Comment_thumbsnotliked.visibility = View.VISIBLE
+            holder.Comment_thumbsliked.visibility = View.INVISIBLE
+
+            db.collection("Contacts")
+                .document(itemList[position].content_doc.toString())
+                .collection("Comment")
+                .document(itemList[position].Doc.toString())
+                .update("Comment_liked", FieldValue.increment(-1))
+                .addOnSuccessListener { result ->
+
+                    db.collection("Contacts")
+                        .document(itemList[position].content_doc.toString())
+                        .collection("Comment")
+                        .document(itemList[position].Doc.toString())
+                        .get()
+                        .addOnSuccessListener { result ->
+                            try {
+                                with(result) {
+                                    holder.Comment_thumbs_count.text = "${getLong("Comment_liked")}"
+                                    editor.remove(itemList[position].Doc)
+                                    editor.commit()
+                                }
+                            } catch (e: Exception) {
+                                Toast.makeText(context, e.toString() , Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                    Toast.makeText(context, "좋아요를 취소했습니다.", Toast.LENGTH_SHORT).show()
+                }
+                .addOnFailureListener { exception ->
+                    Toast.makeText(context, exception.toString(), Toast.LENGTH_SHORT).show()
+                }
+
+        }
+
+        holder.Comment_thumbsnotliked.setOnClickListener {
+            holder.Comment_thumbsnotliked.visibility = View.INVISIBLE
+            holder.Comment_thumbsliked.visibility = View.VISIBLE
+
+            db.collection("Contacts")
+                .document(itemList[position].content_doc.toString())
+                .collection("Comment")
+                .document(itemList[position].Doc.toString())
+                .update("Comment_liked", FieldValue.increment(1))
+                .addOnSuccessListener { result ->
+
+                    db.collection("Contacts")
+                        .document(itemList[position].content_doc.toString())
+                        .collection("Comment")
+                        .document(itemList[position].Doc.toString())
+                        .get()
+                        .addOnSuccessListener { result ->
+                            try {
+                                with(result) {
+                                    holder.Comment_thumbs_count.text =
+                                        "${getLong("Comment_liked")}"
+                                    editor.putBoolean(itemList[position].Doc.toString(), true)
+                                    editor.commit()
+
+                                }
+                            } catch (e: Exception) {
+                                Toast.makeText(context, e.toString() , Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                    Toast.makeText(context, "좋아요를 눌렀습니다.", Toast.LENGTH_SHORT).show()
+                }
+                .addOnFailureListener { exception ->
+                    Toast.makeText(context, exception.toString(), Toast.LENGTH_SHORT).show()
+                }
+
+        }
+
 
         /*
 
@@ -118,9 +212,9 @@ class Comment_ListAdapter(val itemList: ArrayList<Comment_ListLayout>, val conte
         val date: TextView = itemView.findViewById(R.id.comment_date123)
         val comment_delete : ImageView = itemView.findViewById(R.id.comment_delete)
         val Comment_nickname : TextView = itemView.findViewById(R.id.comment_nickname)
-        //val Comment_thumbsliked : TextView = itemView.findViewById(R.id.thumb_liked)
-//        val Comment_thumbsnotliked : TextView = itemView.findViewById(R.id.thumb_notliked)
-//        val Comment_thumbs_count : TextView = itemView.findViewById(R.id.Comment_thumb_count)
+        val Comment_thumbsliked : ImageView = itemView.findViewById(R.id.thumb_liked)
+        val Comment_thumbsnotliked : ImageView = itemView.findViewById(R.id.thumb_notliked)
+        val Comment_thumbs_count : TextView = itemView.findViewById(R.id.Comment_thumb_count)
     }
 
 }
