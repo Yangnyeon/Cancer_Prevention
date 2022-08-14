@@ -35,6 +35,9 @@ import android.util.DisplayMetrics
 import android.media.MediaPlayer
 
 import android.media.MediaPlayer.OnVideoSizeChangedListener
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
+import android.view.animation.BounceInterpolator
 import android.widget.LinearLayout
 
 
@@ -92,6 +95,23 @@ class Main_Fragment : Fragment() {
 
         val thread = Thread(PagerRunnable())
         thread.start()
+
+        var bounce = AnimationUtils.loadAnimation(requireActivity(),R.anim.bounce)
+
+        val interpolator = BounceInterpolator()
+
+        bounce.interpolator = interpolator
+        bounce.repeatCount = Animation.INFINITE
+        bounce.repeatMode = Animation.REVERSE
+        bounce.fillAfter = true
+
+        binding.cancerImage1.startAnimation(bounce)
+
+        binding.cancerImage2.startAnimation(bounce)
+
+        binding.cancerImage3.startAnimation(bounce)
+
+
 
         /*
 

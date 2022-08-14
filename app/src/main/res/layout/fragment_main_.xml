@@ -75,7 +75,9 @@
                                 android:layout_width="80sp"
                                 android:layout_height="80sp"
                                 android:layout_margin="28sp"
-                                android:src="@drawable/nutrient_image"></ImageView>
+                                android:id="@+id/cancer_image1"
+                                android:src="@drawable/nutrient_image">
+                            </ImageView>
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -113,6 +115,7 @@
                                 android:layout_width="80sp"
                                 android:layout_height="80sp"
                                 android:layout_margin="28sp"
+                                android:id="@+id/cancer_image2"
                                 android:src="@drawable/vegitable_image"></ImageView>
 
                             <TextView
@@ -151,6 +154,7 @@
                                 android:layout_width="80sp"
                                 android:layout_height="80sp"
                                 android:layout_margin="28sp"
+                                android:id="@+id/cancer_image3"
                                 android:src="@drawable/unnutrient_image"></ImageView>
 
                             <TextView
