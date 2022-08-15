@@ -11,6 +11,7 @@ class Intro_Screen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_intro_screen)
+
         var handler = Handler()
         handler.postDelayed( {
             var intent = Intent(this, MainActivity::class.java)

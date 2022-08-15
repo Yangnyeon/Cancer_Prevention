@@ -15,6 +15,7 @@ import android.widget.TextView
 import android.util.Log
 import android.view.View
 import io.reactivex.rxjava3.internal.operators.observable.ObservableFromIterable
+import kotlinx.coroutines.*
 import java.util.concurrent.Callable
 
 
@@ -23,87 +24,73 @@ class Rx_java_tranning : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_rx_java_tranning)
 
-        /*
-        val items = ReplaySubject.create<Int>()
-
-        for(i in 0..6) {
-            items.onNext(i)
-        }
-
-        items.filter { item: Int -> item % 2 == 0 }
-            .subscribe { x: Int? -> println(x) }
-
-        items.filter { item : Int -> item % 2 == 0 }
-            .subscribe{ x : Int? -> rx_java.append(x.toString())
-        }
-
-         */
-
-        /*
-
-        var haha = ArrayList<String>()
-        haha.add("어어")
-        haha.add("끅끅끅")
 
 
-        val source4: Observable<String> = Observable.fromIterable(haha)
+        //main()
 
-        source4.subscribe{x : String? -> rx_java.append(x)}
+       // main2()
 
-         */
-
-
-
-
-
-        //0809
-
-        /*
-        val source: Observable<String> = Observable.create { emitter ->
-            emitter.onNext("Hello")
-            emitter.onNext("Yena")
-            emitter.onComplete();
-        }
-
-        source.subscribe{ x : String? -> rx_java.append(x + "\n")}
-
-
-         */
-
-        /*
-        var names = ArrayList<String>()
-
-        names.add("하하")
-        names.add("민어어엄")
-
-        val sources : Observable<String> = ObservableFromIterable(names)
-
-        sources.subscribe{x : String -> rx_java.append(x + " ")}
-
-         */
-
-        /*
-
-        var names = ArrayList<String>()
-
-        names.add("하하")
-        names.add("민어어엄")
-
-        val callable: Callable<String> = Callable<String> {
-            Thread.sleep(3000)
-            "Hello Callable"
-        }
-
-        val sources : Observable<String> = Observable.fromCallable(callable)
-        sources.subscribe{x : String? -> rx_java.append(x + " ")}
-
-        val sources2 : Observable<String> = ObservableFromIterable(names)
-        sources2.subscribe{x : String? -> rx_java.append(x + " ")}
-
-         */
+        main3()
 
 
 
 
     }
+
+    fun main() {
+        runBlocking<Unit> { // start main coroutine
+          var job = GlobalScope.launch { // launch new coroutine in background and continue
+                delay(1000L)
+                rx_java.append("World!")
+            }
+            rx_java.append("Hello") // main coroutine continues here immediately
+           job.join()
+        }
+        rx_java.append("하하")
+
+    }
+
+    fun main2() {
+        runBlocking {
+            launch {
+                delay(100L)
+                rx_java.append("1등" + "\n")
+            }
+
+            coroutineScope {
+                launch {
+                    delay(200L)
+                    rx_java.append("2등" + "\n")
+                }
+
+                delay(300L)
+                rx_java.append("3등" + "\n")
+            }
+        }
+
+        rx_java.append("끗")
+
+
+    }
+
+    fun main3() {
+        runBlocking {
+            launch {
+                delay(100L)
+                rx_java.append("1등")
+            }
+            launch {
+                delay(500L)
+                rx_java.append("2등")
+            }
+            launch {
+                delay(900L)
+                rx_java.append("3등")
+            }
+        }
+
+    }
+
+
+
 }

@@ -39,6 +39,10 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.view.animation.BounceInterpolator
 import android.widget.LinearLayout
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 
 class Main_Fragment : Fragment() {
@@ -105,11 +109,40 @@ class Main_Fragment : Fragment() {
         bounce.repeatMode = Animation.REVERSE
         bounce.fillAfter = true
 
+        /*
+        runBlocking {
+            var gogo1 = GlobalScope.launch {
+                delay(1000L)
+                binding.cancerImage1.startAnimation(bounce)
+            }
+
+            var gogo2 = GlobalScope.launch {
+                delay(3000L)
+                binding.cancerImage2.startAnimation(bounce)
+            }
+
+            var gogo3 = GlobalScope.launch {
+                delay(5000L)
+                binding.cancerImage3.startAnimation(bounce)
+            }
+
+            gogo1.join()
+            gogo2.join()
+            gogo3.join()
+        }
+
+         */
+
+
+
+
         binding.cancerImage1.startAnimation(bounce)
 
         binding.cancerImage2.startAnimation(bounce)
 
         binding.cancerImage3.startAnimation(bounce)
+
+
 
 
 

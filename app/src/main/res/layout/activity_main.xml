@@ -20,16 +20,18 @@
 
 
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
+    <com.ismaeldivita.chipnavigation.ChipNavigationBar
         android:layout_width="match_parent"
         android:layout_height="67sp"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
-        app:itemIconTint="@color/bottom_color"
-        app:itemTextColor="@color/bottom_color"
-        app:itemBackground="@android:color/white"
+        android:gravity="center"
+        android:elevation="16dp"
+        app:cnb_menuResource="@menu/bottom_menu_bar"
+        app:layout_constraintBottom_toBottomOf="parent"
         android:id="@+id/bottonavi"
-        app:menu="@menu/bottom_menu_bar"/>
+        />
+
+
+
 
 
 </LinearLayout>
