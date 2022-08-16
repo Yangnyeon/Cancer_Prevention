@@ -5,12 +5,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Main.Rx_java_tranning"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:gravity="center">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/rx_java"
+        android:textSize="36sp"
         ></TextView>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="시작"
+        android:id="@+id/buttonStart"
+        ></Button>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="종료"
+        android:id="@+id/buttonStop"
+        ></Button>
 
 </LinearLayout>

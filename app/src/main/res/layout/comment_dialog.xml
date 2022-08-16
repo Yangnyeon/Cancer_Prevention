@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/radius_background"
+    android:layout_margin="16sp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/jua"
+        android:layout_marginTop="30sp"
+        android:text="닉네임을 입력해주세요!"
+        android:textSize="24sp"
+
+        ></TextView>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="닉네임 입력!"
+        android:layout_marginTop="30sp"
+        android:id="@+id/edit_nickname"
+        ></EditText>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/jua"
+        android:layout_marginTop="30sp"
+        android:text="비밀번호를 입력해주세요!"
+        android:textSize="24sp"
+
+        ></TextView>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="비밀번호 입력!"
+        android:layout_marginTop="30sp"
+        android:id="@+id/edit_password"
+        android:inputType="textPassword"
+        ></EditText>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="end"
+        >
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="취소"
+            android:layout_marginTop="30sp"
+            android:id="@+id/comment_cancle"
+            ></Button>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="확인"
+            android:layout_marginLeft="20sp"
+            android:layout_marginTop="30sp"
+            android:id="@+id/comment_upload"
+            ></Button>
+
+
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

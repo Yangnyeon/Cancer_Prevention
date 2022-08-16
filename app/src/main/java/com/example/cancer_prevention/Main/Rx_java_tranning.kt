@@ -2,6 +2,8 @@ package com.example.cancer_prevention.Main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Message
 import com.example.cancer_prevention.R
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.internal.operators.observable.ObservableAll
@@ -14,12 +16,23 @@ import android.widget.TextView
 
 import android.util.Log
 import android.view.View
+import io.reactivex.rxjava3.core.Flowable.interval
+import io.reactivex.rxjava3.core.Observable.interval
 import io.reactivex.rxjava3.internal.operators.observable.ObservableFromIterable
 import kotlinx.coroutines.*
+import java.util.*
 import java.util.concurrent.Callable
+import java.util.concurrent.TimeUnit
+import kotlin.concurrent.thread
+import kotlin.concurrent.timer
 
 
 class Rx_java_tranning : AppCompatActivity() {
+
+    var time = 0
+
+    var timerTask : Timer? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_rx_java_tranning)
@@ -30,11 +43,41 @@ class Rx_java_tranning : AppCompatActivity() {
 
        // main2()
 
-        main3()
+        //main3()
 
 
 
+        buttonStart.setOnClickListener {
+            buttonStart.isClickable = false
 
+        }
+
+        /*
+        buttonStop.setOnClickListener {
+            stopTimer()
+        }
+
+         */
+
+
+    }
+
+    fun startTimer() {
+        timerTask = timer(period = 10) {
+            time++
+
+            val sec = time / 100
+            val milli = time % 10
+
+            runOnUiThread{
+                rx_java.text = "${sec} : ${milli}"
+            }
+
+        }
+    }
+
+    fun stopTimer() {
+        timerTask?.cancel()
     }
 
     fun main() {
@@ -90,6 +133,7 @@ class Rx_java_tranning : AppCompatActivity() {
         }
 
     }
+
 
 
 
