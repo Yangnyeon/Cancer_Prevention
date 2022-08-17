@@ -38,26 +38,11 @@ class Rx_java_tranning : AppCompatActivity() {
         setContentView(R.layout.activity_rx_java_tranning)
 
 
-
-        //main()
-
-       // main2()
-
-        //main3()
-
-
-
-        buttonStart.setOnClickListener {
-            buttonStart.isClickable = false
-
+        CoroutineScope(Dispatchers.Main).launch {
+            delay(1000) // 코루틴의 진행을 1초 대기시킵니다.
+            // Thread.sleep(1000) // 스레드의 진행을 1초 대기시킵니다.
+            rx_java.text = "민어어엄진화아아아"
         }
-
-        /*
-        buttonStop.setOnClickListener {
-            stopTimer()
-        }
-
-         */
 
 
     }

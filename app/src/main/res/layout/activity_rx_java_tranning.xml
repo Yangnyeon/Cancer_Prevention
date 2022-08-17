@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/rx_java"
         android:textSize="36sp"
+        android:text="민어어어엄"
         ></TextView>
 
     <Button

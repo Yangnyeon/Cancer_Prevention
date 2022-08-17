@@ -39,10 +39,9 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.view.animation.BounceInterpolator
 import android.widget.LinearLayout
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
+import kotlinx.android.synthetic.main.activity_rx_java_tranning.*
+import kotlinx.coroutines.*
+import java.lang.Runnable
 
 
 class Main_Fragment : Fragment() {
@@ -109,38 +108,58 @@ class Main_Fragment : Fragment() {
         bounce.repeatMode = Animation.REVERSE
         bounce.fillAfter = true
 
+
         /*
         runBlocking {
-            var gogo1 = GlobalScope.launch {
+            GlobalScope.launch {
                 delay(1000L)
+
                 binding.cancerImage1.startAnimation(bounce)
             }
 
-            var gogo2 = GlobalScope.launch {
+           GlobalScope.launch {
                 delay(3000L)
                 binding.cancerImage2.startAnimation(bounce)
             }
 
-            var gogo3 = GlobalScope.launch {
+            GlobalScope.launch {
                 delay(5000L)
                 binding.cancerImage3.startAnimation(bounce)
             }
 
-            gogo1.join()
-            gogo2.join()
-            gogo3.join()
         }
 
          */
 
+        binding.cancerImage1.startAnimation(bounce)
+
+        CoroutineScope(Dispatchers.Main).launch {
+            delay(1500)
+            binding.cancerImage2.startAnimation(bounce)
+         }
+
+        CoroutineScope(Dispatchers.Main).launch {
+            delay(3000)
+            binding.cancerImage3.startAnimation(bounce)
+        }
 
 
+
+
+
+
+
+        /*
 
         binding.cancerImage1.startAnimation(bounce)
 
         binding.cancerImage2.startAnimation(bounce)
 
         binding.cancerImage3.startAnimation(bounce)
+
+         */
+
+
 
 
 
@@ -205,6 +224,7 @@ class Main_Fragment : Fragment() {
         return binding.root
     }
 
+
     private fun setPage() {
         if(currentPosition == 3 ) {
             currentPosition = 0
@@ -219,23 +239,11 @@ class Main_Fragment : Fragment() {
     inner class PagerRunnable : Runnable {
         override fun run() {
             while(true) {
-                Thread.sleep(3000)
+                Thread.sleep(1500)
                 handler.sendEmptyMessage(0)
             }
         }
     }
-
-
-    internal class MyVideoView(context: Context?, attrs: AttributeSet?) :
-        VideoView(context, attrs) {
-        override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-            val dis =
-                (context.getSystemService(Context.WINDOW_SERVICE) as WindowManager).defaultDisplay
-            setMeasuredDimension(dis.width, dis.height)
-        }
-    }
-
-
 
 
 
