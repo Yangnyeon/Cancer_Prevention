@@ -96,10 +96,15 @@ class Main_Fragment : Fragment() {
         val adapter11 = ViewPagerAdapter()
         binding.viewpager11.adapter = adapter11
 
+        /*
         val thread = Thread(PagerRunnable())
         thread.start()
 
+         */
+
         var bounce = AnimationUtils.loadAnimation(requireActivity(),R.anim.bounce)
+
+        var turn_aruond = AnimationUtils.loadAnimation(requireActivity(), R.anim.turn_around)
 
         val interpolator = BounceInterpolator()
 
@@ -109,117 +114,21 @@ class Main_Fragment : Fragment() {
         bounce.fillAfter = true
 
 
-        /*
-        runBlocking {
-            GlobalScope.launch {
-                delay(1000L)
-
-                binding.cancerImage1.startAnimation(bounce)
-            }
-
-           GlobalScope.launch {
-                delay(3000L)
-                binding.cancerImage2.startAnimation(bounce)
-            }
-
-            GlobalScope.launch {
-                delay(5000L)
-                binding.cancerImage3.startAnimation(bounce)
-            }
-
-        }
-
-         */
-
-        binding.cancerImage1.startAnimation(bounce)
-
         CoroutineScope(Dispatchers.Main).launch {
-            delay(1500)
-            binding.cancerImage2.startAnimation(bounce)
+            delay(100)
+            binding.cancerImage1.startAnimation(bounce)
+            delay(200)
+            binding.cancerImage2.startAnimation(turn_aruond)
          }
-
-        CoroutineScope(Dispatchers.Main).launch {
-            delay(3000)
-            binding.cancerImage3.startAnimation(bounce)
-        }
-
-
-
-
-
-
-
-        /*
-
-        binding.cancerImage1.startAnimation(bounce)
-
-        binding.cancerImage2.startAnimation(bounce)
-
         binding.cancerImage3.startAnimation(bounce)
 
-         */
-
-
-
-
-
-
-
-        /*
-
-        val videoUri = Uri.parse("//player.vimeo.com/progressive_redirect/playback/733046618/rendition/720p/file.mp4?loc=external&oauth2_token_id=1027659655&signature=8b65f7302dcc93562a2aea90f4e62f384e293827996cabe1cc0602a6414537fb")
-        binding.videoView.setVideoURI(videoUri);
-        binding.videoView.start();
-        binding.videoView.setOnCompletionListener {
-            binding.videoView.start();
-        }
-        binding.videoView.setOnPreparedListener {
-            it.isLooping
-        }
-
-         */
-
-        //val VIDEO_PATH = "android.resource://" + packageName     + "/" + R.raw.cancer_video
-
-        /*
-
-        val VIDEO_PATH = "android.resource://" + requireActivity().packageName + "/" + R.raw.cancer_video3
-
-        var uri: Uri = Uri.parse(VIDEO_PATH)
-        binding.videoView.setVideoURI(uri)
-        binding.videoView.requestFocus()
-        binding.videoView.start()
-        binding.videoView.setMediaController(MediaController(requireActivity()))
-
-        binding.videoView.setOnCompletionListener {
-            binding.videoView.start()
-            it.isLooping
-        }
-
-        binding.videoView.setOnPreparedListener {
-            binding.videoView.setMediaController(null)
-            binding.videoView.start()     // 동영상 재개
-            it.isLooping
-        }
-
-        val onVideoSizeChangedListener =
-            OnVideoSizeChangedListener { mp, width, height ->
-                val lp = LinearLayout.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.MATCH_PARENT
-                )
-                binding.videoView.layoutParams = lp
+        CoroutineScope(Dispatchers.Main).launch {
+            while (true) {
+                delay(2000)
+                setPage()
             }
+        } //뷰페이저
 
-        onVideoSizeChangedListener
-
-         */
-
-        //
-
-
-
-        //
 
         return binding.root
     }
@@ -236,6 +145,7 @@ class Main_Fragment : Fragment() {
         currentPosition += 1
     }
 
+
     inner class PagerRunnable : Runnable {
         override fun run() {
             while(true) {
@@ -244,7 +154,6 @@ class Main_Fragment : Fragment() {
             }
         }
     }
-
 
 
 }

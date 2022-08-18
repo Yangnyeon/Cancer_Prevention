@@ -20,14 +20,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="시작"
-        android:id="@+id/buttonStart"
+        android:id="@+id/btn_start"
         ></Button>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="종료"
-        android:id="@+id/buttonStop"
+        android:id="@+id/btn_stop"
         ></Button>
 
 </LinearLayout>

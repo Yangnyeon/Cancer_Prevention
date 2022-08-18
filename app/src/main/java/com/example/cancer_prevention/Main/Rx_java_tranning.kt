@@ -3,6 +3,7 @@ package com.example.cancer_prevention.Main
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.os.Message
 import com.example.cancer_prevention.R
 import io.reactivex.rxjava3.core.Observable
@@ -16,10 +17,13 @@ import android.widget.TextView
 
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import io.reactivex.rxjava3.core.Flowable.interval
 import io.reactivex.rxjava3.core.Observable.interval
 import io.reactivex.rxjava3.internal.operators.observable.ObservableFromIterable
 import kotlinx.coroutines.*
+import java.lang.Runnable
+import java.lang.Thread.sleep
 import java.util.*
 import java.util.concurrent.Callable
 import java.util.concurrent.TimeUnit
@@ -33,18 +37,55 @@ class Rx_java_tranning : AppCompatActivity() {
 
     var timerTask : Timer? = null
 
+    lateinit var th : Thread
+    lateinit var th2 : Thread
+    var isThread = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_rx_java_tranning)
 
 
+        /*
         CoroutineScope(Dispatchers.Main).launch {
             delay(1000) // 코루틴의 진행을 1초 대기시킵니다.
             // Thread.sleep(1000) // 스레드의 진행을 1초 대기시킵니다.
             rx_java.text = "민어어엄진화아아아"
         }
 
+         */
 
+
+        /*
+        btn_start.setOnClickListener {
+
+            isThread = true
+            th = Thread() {
+                run() {
+                    while (isThread) {
+                        sleep(1000L)
+                        handler.sendEmptyMessage(0)
+                    }
+                }
+            }
+
+            th.start()
+
+        }
+
+        btn_stop.setOnClickListener {
+            isThread = false
+        }
+
+         */
+
+
+
+    }
+
+    val handler = Handler() {
+        Toast.makeText(this@Rx_java_tranning, "하하",Toast.LENGTH_SHORT).show()
+        true
     }
 
     fun startTimer() {
