@@ -62,25 +62,35 @@ class Community_Fragment : Fragment() {
 
 
         db.collection("Contacts") // 작업할 컬렉션
+            //.limit(3)
             .orderBy("com_date", Query.Direction.DESCENDING)
             .get() // 문서 가져오기
             .addOnSuccessListener { result ->
                 // 성공할 경우
-
                 loadingAnimDialog.dismiss()
 
                 itemList.clear()
-                for (document in result) {  // 가져온 문서들은 result에 들어감
-                    val item =
-                        ListLayout(document["name"] as String, document["number"] as String,
-                            document["com_date"] as String?, document["password"] as String,
-                            document["doc"] as String, document["nickname"] as String, document["liked"] as Long, document["eye_count"] as Long, document["imageUrl"] as String)
-                    itemList.add(item)
-                }
-                adapter123.notifyDataSetChanged()// 리사이클러 뷰 갱신
+
+
+                    for (document in result) {  // 가져온 문서들은 result에 들어감
+                        val item =
+                            ListLayout(
+                                document["name"] as String,
+                                document["number"] as String,
+                                document["com_date"] as String?,
+                                document["password"] as String,
+                                document["doc"] as String,
+                                document["nickname"] as String,
+                                document["liked"] as Long,
+                                document["eye_count"] as Long,
+                                document["imageUrl"] as String
+                            )
+                        itemList.add(item)
+                    }
+                    adapter123.notifyDataSetChanged()// 리사이클러 뷰 갱신
             }
             .addOnFailureListener { exception ->
-                // 실패할 경우
+                // 실패할 경우z
                 Log.w("MainActivity", "Error getting documents: $exception")
             }
 

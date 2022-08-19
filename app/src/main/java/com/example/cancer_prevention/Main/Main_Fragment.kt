@@ -2,6 +2,8 @@ package com.example.cancer_prevention.Main
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
@@ -35,10 +37,19 @@ import android.util.DisplayMetrics
 import android.media.MediaPlayer
 
 import android.media.MediaPlayer.OnVideoSizeChangedListener
+import android.util.Log
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.view.animation.BounceInterpolator
 import android.widget.LinearLayout
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.cancer_prevention.Community.ListAdapter
+import com.example.cancer_prevention.Community.ListLayout
+import com.example.cancer_prevention.Community.loading_screen
+import com.example.cancer_prevention.Main.Notice.Notice_Adapter
+import com.example.cancer_prevention.Main.Notice.Notice_Layout
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import kotlinx.android.synthetic.main.activity_rx_java_tranning.*
 import kotlinx.coroutines.*
 import java.lang.Runnable
@@ -46,7 +57,7 @@ import java.lang.Runnable
 
 class Main_Fragment : Fragment() {
 
-    private var _binding : FragmentMainBinding?= null    // 뷰 바인딩
+    private var _binding : FragmentMainBinding ?= null    // 뷰 바인딩
     private val binding get() = _binding!!
 
     val handler = Handler(Looper.getMainLooper()) {
@@ -55,6 +66,13 @@ class Main_Fragment : Fragment() {
     }
 
     var currentPosition = 0
+
+    //공지사항
+
+    val db = FirebaseFirestore.getInstance()    // Firestore 인스턴스 선언
+    val itemList = arrayListOf<Notice_Layout>()    // 리스트 아이템 배열
+
+    //
 
 
     override fun onCreateView(
@@ -128,6 +146,51 @@ class Main_Fragment : Fragment() {
                 setPage()
             }
         } //뷰페이저
+
+        //공지사항
+
+        val notice_adapter = Notice_Adapter(itemList, requireActivity())   // 리사이클러 뷰 어댑터
+
+        val loadingAnimDialog = loading_screen(requireActivity())
+
+        loadingAnimDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        loadingAnimDialog.show()
+
+
+        binding.noticeList.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
+        binding.noticeList.adapter = notice_adapter
+
+        db.collection("Notice") // 작업할 컬렉션
+            .limit(3)
+            .orderBy("Notice_date", Query.Direction.ASCENDING)
+            .get() // 문서 가져오기
+            .addOnSuccessListener { result ->
+                // 성공할 경우
+                loadingAnimDialog.dismiss()
+
+                itemList.clear()
+
+                for (document in result) {  // 가져온 문서들은 result에 들어감
+                    val item =
+                        Notice_Layout(
+                            document["Notice_name"] as String,
+                            document["Notice_content"] as String,
+                            document["Notice_date"] as String?,
+                            document["Notice_doc"] as String,
+                            document["Notice_image"] as String
+                        )
+                    itemList.add(item)
+                }
+                notice_adapter.notifyDataSetChanged()// 리사이클러 뷰 갱신
+            }
+            .addOnFailureListener { exception ->
+                // 실패할 경우z
+                Log.w("MainActivity", "Error getting documents: $exception")
+            }
+
+
+        //
 
 
         return binding.root
