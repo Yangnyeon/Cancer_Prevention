@@ -16,6 +16,9 @@
         android:theme="@style/Theme.Cancer_Prevention"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".Introduce.Notice_Activity"
+            android:exported="true" />
+        <activity
             android:name=".Main.Notice.Notice_holder"
             android:exported="true" />
         <activity

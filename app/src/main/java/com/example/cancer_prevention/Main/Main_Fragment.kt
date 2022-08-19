@@ -149,45 +149,52 @@ class Main_Fragment : Fragment() {
 
         //공지사항
 
-        val notice_adapter = Notice_Adapter(itemList, requireActivity())   // 리사이클러 뷰 어댑터
+        CoroutineScope(Dispatchers.Main).launch {
 
-        val loadingAnimDialog = loading_screen(requireActivity())
+            //혹시모를 ANR 방지로 코루틴으로 비동기처리
 
-        loadingAnimDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            val notice_adapter = Notice_Adapter(itemList, requireActivity())
 
-        loadingAnimDialog.show()
+            val loadingAnimDialog = loading_screen(requireActivity())
+
+            loadingAnimDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+            loadingAnimDialog.show()
 
 
-        binding.noticeList.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
-        binding.noticeList.adapter = notice_adapter
+            binding.noticeList.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
+            binding.noticeList.adapter = notice_adapter
 
-        db.collection("Notice") // 작업할 컬렉션
-            .limit(3)
-            .orderBy("Notice_date", Query.Direction.ASCENDING)
-            .get() // 문서 가져오기
-            .addOnSuccessListener { result ->
-                // 성공할 경우
-                loadingAnimDialog.dismiss()
+            db.collection("Notice") // 작업할 컬렉션
+                .limit(3)
+                .orderBy("Notice_date", Query.Direction.ASCENDING)
+                .get() // 문서 가져오기
+                .addOnSuccessListener { result ->
+                    // 성공할 경우
+                    loadingAnimDialog.dismiss()
 
-                itemList.clear()
+                    itemList.clear()
 
-                for (document in result) {  // 가져온 문서들은 result에 들어감
-                    val item =
-                        Notice_Layout(
-                            document["Notice_name"] as String,
-                            document["Notice_content"] as String,
-                            document["Notice_date"] as String?,
-                            document["Notice_doc"] as String,
-                            document["Notice_image"] as String
-                        )
-                    itemList.add(item)
+                    for (document in result) {  // 가져온 문서들은 result에 들어감
+                        val item =
+                            Notice_Layout(
+                                document["Notice_name"] as String,
+                                document["Notice_content"] as String,
+                                document["Notice_date"] as String?,
+                                document["Notice_doc"] as String,
+                                document["Notice_image"] as String
+                            )
+                        itemList.add(item)
+                    }
+                    notice_adapter.notifyDataSetChanged()// 리사이클러 뷰 갱신
                 }
-                notice_adapter.notifyDataSetChanged()// 리사이클러 뷰 갱신
-            }
-            .addOnFailureListener { exception ->
-                // 실패할 경우z
-                Log.w("MainActivity", "Error getting documents: $exception")
-            }
+                .addOnFailureListener { exception ->
+                    // 실패할 경우z
+                    Log.w("MainActivity", "Error getting documents: $exception")
+                }
+        }
+
+
 
 
         //

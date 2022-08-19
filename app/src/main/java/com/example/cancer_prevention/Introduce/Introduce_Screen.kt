@@ -23,6 +23,11 @@ class Introduce_Screen : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentIntroduceScreenBinding.inflate(inflater, container, false)
 
+        binding.goNotice.setOnClickListener {
+
+        }
+
+
         return binding.root
     }
 
