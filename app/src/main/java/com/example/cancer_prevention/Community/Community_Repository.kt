@@ -25,7 +25,7 @@ class Community_Repository(application: Application) {
                 for (document in result) {  // 가져온 문서들은 result에 들어감
                     val item =
                         ListLayout(document["name"] as String, document["number"] as String,
-                            document["com_date"] as String?, document["password"] as String,
+                            document["com_date"] as String, document["password"] as String,
                             document["doc"] as String, document["nickname"] as String, document["liked"] as Long, document["eye_count"] as Long)
                     itemList.add(item)
                 }

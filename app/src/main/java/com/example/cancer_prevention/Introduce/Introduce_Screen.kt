@@ -1,5 +1,6 @@
 package com.example.cancer_prevention.Introduce
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -24,7 +25,7 @@ class Introduce_Screen : Fragment() {
         _binding = FragmentIntroduceScreenBinding.inflate(inflater, container, false)
 
         binding.goNotice.setOnClickListener {
-
+            startActivity(Intent(requireActivity(), Notice_Activity::class.java))
         }
 
 

@@ -167,7 +167,7 @@ class Main_Fragment : Fragment() {
 
             db.collection("Notice") // 작업할 컬렉션
                 .limit(3)
-                .orderBy("Notice_date", Query.Direction.ASCENDING)
+                .orderBy("Notice_date", Query.Direction.DESCENDING)
                 .get() // 문서 가져오기
                 .addOnSuccessListener { result ->
                     // 성공할 경우

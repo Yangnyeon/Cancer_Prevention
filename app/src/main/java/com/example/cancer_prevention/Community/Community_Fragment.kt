@@ -2,6 +2,7 @@ package com.example.cancer_prevention.Community
 
 import android.app.ProgressDialog
 import android.content.Intent
+import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
@@ -25,6 +26,7 @@ import com.example.cancer_prevention.room.TodoViewModel
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import kotlinx.android.synthetic.main.fragment_community_.*
 
 class Community_Fragment : Fragment() {
 
@@ -33,6 +35,8 @@ class Community_Fragment : Fragment() {
     private val binding get() = _binding!!
     val db = FirebaseFirestore.getInstance()    // Firestore 인스턴스 선언
     val itemList = arrayListOf<ListLayout>()    // 리스트 아이템 배열
+
+    val filter_itemList = arrayListOf<ListLayout>()
 
     val ref : CollectionReference = db.collection("Contacts")
 
@@ -60,6 +64,7 @@ class Community_Fragment : Fragment() {
         binding.rvList.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
         binding.rvList.adapter = adapter123
 
+        binding.freeCommunity.setCardBackgroundColor(Color.GRAY)
 
         db.collection("Contacts") // 작업할 컬렉션
             //.limit(3)
@@ -70,14 +75,12 @@ class Community_Fragment : Fragment() {
                 loadingAnimDialog.dismiss()
 
                 itemList.clear()
-
-
                     for (document in result) {  // 가져온 문서들은 result에 들어감
                         val item =
                             ListLayout(
                                 document["name"] as String,
                                 document["number"] as String,
-                                document["com_date"] as String?,
+                                document["com_date"] as String,
                                 document["password"] as String,
                                 document["doc"] as String,
                                 document["nickname"] as String,
@@ -104,7 +107,7 @@ class Community_Fragment : Fragment() {
                     itemList.clear()
                     for (document in result) {  // 가져온 문서들은 result에 들어감
                         val item =
-                            ListLayout(document["name"] as String, document["number"] as String, document["com_date"] as String?, document["password"] as String,document["doc"] as String, document["nickname"] as String, document["liked"] as Long,  document["eye_count"] as Long)
+                            ListLayout(document["name"] as String, document["number"] as String, document["com_date"] as String, document["password"] as String,document["doc"] as String, document["nickname"] as String, document["liked"] as Long,  document["eye_count"] as Long)
                         itemList.add(item)
                     }
                     adapter123.notifyDataSetChanged()  // 리사이클러 뷰 갱신
@@ -119,8 +122,87 @@ class Community_Fragment : Fragment() {
             startActivity(Intent(requireActivity(), Community_Write::class.java))
         }
 
+        binding.freeCommunity.setOnClickListener {
+            binding.freeCommunity.setCardBackgroundColor(Color.GRAY)
+            binding.famousCommunity.setCardBackgroundColor(Color.WHITE)
+            binding.questionCommunity.setCardBackgroundColor(Color.WHITE)
+        }
+
+        binding.famousCommunity.setOnClickListener {
+            binding.freeCommunity.setCardBackgroundColor(Color.WHITE)
+            binding.famousCommunity.setCardBackgroundColor(Color.GRAY)
+            binding.questionCommunity.setCardBackgroundColor(Color.WHITE)
+        }
+
+        binding.questionCommunity.setOnClickListener {
+            binding.freeCommunity.setCardBackgroundColor(Color.WHITE)
+            binding.famousCommunity.setCardBackgroundColor(Color.WHITE)
+            binding.questionCommunity.setCardBackgroundColor(Color.GRAY)
+        }
+
+        binding.CommunitySearchview.setOnQueryTextListener(searchViewTextListener)
+
+
         return binding.root
     }
+
+    private var searchViewTextListener: androidx.appcompat.widget.SearchView.OnQueryTextListener =
+        object : androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            //검색버튼 입력시 호출, 검색버튼이 없으므로 사용하지 않음
+            override fun onQueryTextSubmit(s: String): Boolean {
+
+
+
+                return true
+            }
+
+
+            //텍스트 입력/수정시에 호출
+            override fun onQueryTextChange(s: String): Boolean {
+
+                if(s != null) {
+
+                    val adapter123 = ListAdapter(itemList, requireActivity())
+
+                    binding.rvList.layoutManager =
+                        LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
+                    binding.rvList.adapter = adapter123
+
+                    db.collection("Contacts") // 작업할 컬렉션
+                        .orderBy("com_date", Query.Direction.DESCENDING)
+                        .get() // 문서 가져오기
+                        .addOnSuccessListener { result ->
+                            itemList.clear()
+                            for (document in result) {  // 가져온 문서들은 result에 들어감
+                                if (document.getString("name").toString()!!.contains(s)) {
+                                    var item123 =
+                                        ListLayout(
+                                            document["name"] as String,
+                                            document["number"] as String,
+                                            document["com_date"] as String,
+                                            document["password"] as String,
+                                            document["doc"] as String,
+                                            document["nickname"] as String,
+                                            document["liked"] as Long,
+                                            document["eye_count"] as Long,
+                                            document["imageUrl"] as String
+                                        )
+                                    itemList.add(item123)
+                                }
+                            }
+                            adapter123.notifyDataSetChanged()// 리사이클러 뷰 갱신
+                        }
+                        .addOnFailureListener { exception ->
+                            // 실패할 경우z
+                            Log.w("MainActivity", "Error getting documents: $exception")
+                        }
+                } else if(s == "") {
+                    onResume()
+                }
+
+                return true
+            }
+        }
 
     fun update() {
 
@@ -151,7 +233,7 @@ class Community_Fragment : Fragment() {
                 for (document in result) {  // 가져온 문서들은 result에 들어감
                     val item =
                         ListLayout(document["name"] as String, document["number"] as String,
-                            document["com_date"] as String?, document["password"] as String,
+                            document["com_date"] as String, document["password"] as String,
                             document["doc"] as String, document["nickname"] as String, document["liked"] as Long, document["eye_count"] as Long, document["imageUrl"] as String)
                     itemList.add(item)
 
@@ -169,4 +251,5 @@ class Community_Fragment : Fragment() {
         super.onResume()
         update()
     }
+
 }
