@@ -36,6 +36,7 @@ class Community_holder : AppCompatActivity() {
     val itemList = arrayListOf<ListLayout>()
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_community_holder)

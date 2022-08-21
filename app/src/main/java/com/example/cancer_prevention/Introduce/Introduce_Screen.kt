@@ -6,8 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.cancer_prevention.R
-import com.example.cancer_prevention.databinding.FragmentCommunityBinding
+import com.example.cancer_prevention.Main.Notice.Notice_Activity
 import com.example.cancer_prevention.databinding.FragmentIntroduceScreenBinding
 
 

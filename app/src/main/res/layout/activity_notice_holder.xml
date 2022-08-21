@@ -94,7 +94,7 @@
                 android:id="@+id/Notice_holder_image"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/board_content">
+                android:layout_below="@+id/Notice_holder_content">
 
             </ImageView>
 

@@ -16,13 +16,16 @@
         android:theme="@style/Theme.Cancer_Prevention"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".Introduce.Notice_Activity"
+            android:name=".Question_Community.Question_holder"
+            android:exported="true" />
+        <activity
+            android:name=".Question_Community.Question_Write"
+            android:exported="true" />
+        <activity
+            android:name=".Main.Notice.Notice_Activity"
             android:exported="true" />
         <activity
             android:name=".Main.Notice.Notice_holder"
-            android:exported="true" />
-        <activity
-            android:name=".Community.loading_screen"
             android:exported="true" />
         <activity
             android:name=".Main.Rx_java_tranning"
@@ -55,15 +58,6 @@
             android:exported="true" />
         <activity
             android:name=".room.Room_Activity"
-            android:exported="true" />
-        <activity
-            android:name=".Cancer_check.MyCustomDialog"
-            android:exported="true" />
-        <activity
-            android:name=".Cancer_check.Todo_List"
-            android:exported="true" />
-        <activity
-            android:name=".corutine"
             android:exported="true" />
         <activity
             android:name=".Retrofit.Cancer_Retrofit"
