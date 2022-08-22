@@ -16,6 +16,9 @@
         android:theme="@style/Theme.Cancer_Prevention"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".Main.Main_bar"
+            android:exported="true" />
+        <activity
             android:name=".Question_Community.Question_holder"
             android:exported="true" />
         <activity

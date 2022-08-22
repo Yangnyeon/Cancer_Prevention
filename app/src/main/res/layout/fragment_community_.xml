@@ -5,7 +5,11 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:id="@+id/Community_drawrlayout"
     android:background="@drawable/cancer_background">
+
+
+
 
 
     <ScrollView
@@ -16,15 +20,23 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <ImageView
+                android:layout_width="50sp"
+                android:layout_height="50sp"
+                android:layout_margin="16sp"
+                android:id="@+id/Community_Drawer"
+                android:src="@drawable/ic_baseline_format_list_bulleted_24"
+                />
+
             <TextView
+                android:id="@+id/title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16sp"
-                android:layout_marginTop="32sp"
+                android:layout_marginTop="68sp"
                 android:fontFamily="@font/jua"
                 android:text="커뮤니티 게시판"
                 android:textColor="#673AB7"
-                android:id="@+id/title"
                 android:textSize="36sp"></TextView>
 
 
@@ -106,16 +118,6 @@
                 android:layout_marginTop="230sp"
                 android:overScrollMode="never" />
 
-            <Button
-                android:id="@+id/btn_read"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="8dp"
-                android:text="읽기"
-                android:visibility="invisible" />
 
 
         </RelativeLayout>
@@ -137,6 +139,7 @@
         android:backgroundTint="#3CC82B"
         android:src="@drawable/ic_baseline_upload_24">
     </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
 
 
 </RelativeLayout>

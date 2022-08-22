@@ -59,6 +59,7 @@
             android:layout_height="wrap_content"
             android:text="문의하기"
             android:textSize="18sp"
+            android:id="@+id/gogo_question"
             android:textColor="#000000"
             android:layout_marginTop="30sp"
             android:fontFamily="@font/jua"/>

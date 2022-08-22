@@ -6,13 +6,13 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
+import android.widget.Toolbar
 import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat.recreate
+import androidx.core.view.GravityCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -28,6 +28,7 @@ import com.example.cancer_prevention.R
 import com.example.cancer_prevention.databinding.ActivityCommunityWriteBinding
 import com.example.cancer_prevention.databinding.FragmentCommunityBinding
 import com.example.cancer_prevention.room.TodoViewModel
+import com.google.android.material.navigation.NavigationView
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
@@ -55,7 +56,7 @@ class Community_Fragment : Fragment() {
 
     private lateinit var model: Community_Viewmodel
 
-
+    lateinit var navigation : NavigationView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -73,7 +74,7 @@ class Community_Fragment : Fragment() {
 
         loadingAnimDialog.show()
 
-        binding.btnRead.performClick()
+
 
         binding.rvList.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
         binding.rvList.adapter = adapter123
@@ -187,9 +188,19 @@ class Community_Fragment : Fragment() {
 
         binding.CommunitySearchview.setOnQueryTextListener(searchViewTextListener)
 
+        /*
+          R.id.menu_item1 -> Toast.makeText(requireActivity(), "1", Toast.LENGTH_SHORT).show()
+                R.id.menu_item2 -> Toast.makeText(requireActivity(), "2", Toast.LENGTH_SHORT).show()
+                R.id.menu_item3 -> Toast.makeText(requireActivity(), "3", Toast.LENGTH_SHORT).show()
+         */
+
 
         return binding.root
     }
+
+
+
+
 
     private var searchViewTextListener: androidx.appcompat.widget.SearchView.OnQueryTextListener =
         object : androidx.appcompat.widget.SearchView.OnQueryTextListener {
@@ -295,7 +306,10 @@ class Community_Fragment : Fragment() {
                 Log.w("MainActivity", "Error getting documents: $exception")
             }
 
+
+
     }
+
 
     override fun onResume() {
         super.onResume()
@@ -350,6 +364,8 @@ class Community_Fragment : Fragment() {
                 }
         }
     }
+
+
 
 }
 
