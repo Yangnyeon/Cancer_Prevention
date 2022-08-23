@@ -44,19 +44,12 @@ class Community_Fragment : Fragment() {
     private var _binding : FragmentCommunityBinding?= null    // 뷰 바인딩
     private val binding get() = _binding!!
     val db = FirebaseFirestore.getInstance()    // Firestore 인스턴스 선언
+
     val itemList = arrayListOf<ListLayout>()    // 리스트 아이템 배열
 
     val Question_itemList = arrayListOf<Question_Layout>()    // 리스트 아이템 배열
 
-    val ref : CollectionReference = db.collection("Contacts")
 
-    val notice_itemList = arrayListOf<Notice_Layout>()
-
-    //test
-
-    private lateinit var model: Community_Viewmodel
-
-    lateinit var navigation : NavigationView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -78,8 +71,6 @@ class Community_Fragment : Fragment() {
 
         binding.rvList.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
         binding.rvList.adapter = adapter123
-
-        binding.freeCommunity.setCardBackgroundColor(Color.GRAY)
 
         CoroutineScope(Dispatchers.Main).launch {
             db.collection("Contacts") // 작업할 컬렉션
@@ -143,48 +134,6 @@ class Community_Fragment : Fragment() {
             startActivity(Intent(requireActivity(), Community_Write::class.java))
         }
 
-        binding.freeCommunity.setOnClickListener {
-
-            CoroutineScope(Dispatchers.Main).launch {
-                Free_Community_update()
-                binding.freeCommunity.setCardBackgroundColor(Color.GRAY)
-                binding.famousCommunity.setCardBackgroundColor(Color.WHITE)
-                binding.questionCommunity.setCardBackgroundColor(Color.WHITE)
-
-
-                binding.btnWrite.setOnClickListener {
-                    startActivity(Intent(requireActivity(), Community_Write::class.java))
-                }
-            }
-
-        }
-
-        binding.famousCommunity.setOnClickListener {
-
-            CoroutineScope(Dispatchers.Main).launch {
-                //Notice_update()
-                binding.freeCommunity.setCardBackgroundColor(Color.WHITE)
-                binding.famousCommunity.setCardBackgroundColor(Color.GRAY)
-                binding.questionCommunity.setCardBackgroundColor(Color.WHITE)
-            }
-            
-
-        }
-
-        binding.questionCommunity.setOnClickListener {
-            CoroutineScope(Dispatchers.Main).launch {
-                Question_update()
-                binding.freeCommunity.setCardBackgroundColor(Color.WHITE)
-                binding.famousCommunity.setCardBackgroundColor(Color.WHITE)
-                binding.questionCommunity.setCardBackgroundColor(Color.GRAY)
-
-                binding.btnWrite.setOnClickListener {
-                    startActivity(Intent(requireActivity(), Question_Write::class.java))
-                }
-
-            }
-
-        }
 
         binding.CommunitySearchview.setOnQueryTextListener(searchViewTextListener)
 
@@ -313,9 +262,6 @@ class Community_Fragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        binding.freeCommunity.setCardBackgroundColor(Color.GRAY)
-        binding.famousCommunity.setCardBackgroundColor(Color.WHITE)
-        binding.questionCommunity.setCardBackgroundColor(Color.WHITE)
         Free_Community_update()
     }
 

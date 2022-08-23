@@ -11,6 +11,7 @@ import com.example.cancer_prevention.Introduce.Introduce_Screen
 import com.example.cancer_prevention.Main.Intro_Screen
 import com.example.cancer_prevention.Main.Main_Fragment
 import com.example.cancer_prevention.Main.Main_bar
+import com.example.cancer_prevention.Question_Community.Question_Community
 import com.example.cancer_prevention.Retrofit.Cancer_Retrofit
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
@@ -108,6 +109,7 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         when(item.itemId){
             android.R.id.home->{ // 메뉴 버튼
                 main_drawer_layout.openDrawer(GravityCompat.START)    // 네비게이션 드로어 열기
+
             }
         }
         return super.onOptionsItemSelected(item)
@@ -115,8 +117,8 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
-            R.id.menu_item1-> Toast.makeText(this,"account clicked", Toast.LENGTH_SHORT).show()
-            R.id.menu_item2-> Toast.makeText(this,"item2 clicked",Toast.LENGTH_SHORT).show()
+            R.id.menu_item1-> onFragmentChanged(1)
+            R.id.menu_item2-> onFragmentChanged(3)
             R.id.menu_item3-> Toast.makeText(this,"item3 clicked",Toast.LENGTH_SHORT).show()
         }
         return false
@@ -124,25 +126,24 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
 
     fun onFragmentChanged(index: Int) {
 
-        /*
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.container, fragment)
-        transaction.commit()
-
-         */
-
         if (index == 0) {
             val MainFragment1 = Main_Fragment()
             supportFragmentManager.beginTransaction().replace(R.id.container, MainFragment1).commitAllowingStateLoss()
             bottonavi.setItemSelected(R.id.first)
         } else if (index == 1) {
+            bottonavi.setItemSelected(R.id.second)
             val MainFragment2 = Community_Fragment()
             supportFragmentManager.beginTransaction().replace(R.id.container, MainFragment2).commitAllowingStateLoss()
-            bottonavi.setItemSelected(R.id.second)
+            main_drawer_layout.closeDrawer(GravityCompat.START)
         } else if (index == 2) {
             val MainFragment3 = Introduce_Screen()
             supportFragmentManager.beginTransaction().replace(R.id.container, MainFragment3).commitAllowingStateLoss()
             bottonavi.setItemSelected(R.id.first)
+        } else if (index == 3) {
+            bottonavi.setItemSelected(R.id.second)
+            val Question_Community = Question_Community()
+            supportFragmentManager.beginTransaction().replace(R.id.container, Question_Community).commit()
+            main_drawer_layout.closeDrawer(GravityCompat.START)
         }
     }
 }

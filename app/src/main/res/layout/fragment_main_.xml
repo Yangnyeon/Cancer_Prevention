@@ -35,6 +35,25 @@
             </RelativeLayout>
 
 
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="16sp"
+                android:layout_marginTop="16sp"
+                android:layout_marginLeft="16sp"
+                android:layout_marginRight="16sp">
+
+                <androidx.appcompat.widget.SearchView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+                </androidx.appcompat.widget.SearchView>
+
+
+            </androidx.cardview.widget.CardView>
+
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -183,7 +202,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16sp"
-                android:layout_marginTop="16sp"
+                android:layout_marginTop="22sp"
                 android:fontFamily="@font/jua"
                 android:text="담배 끊기 프로젝트"
                 android:textColor="#000000"
@@ -430,8 +449,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/notice_list"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                />
+                android:layout_height="match_parent" />
 
             <LinearLayout
                 android:layout_width="match_parent"
