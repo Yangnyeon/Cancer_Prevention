@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="@drawable/radius_background"
     android:layout_margin="16sp">
 
     <TextView
@@ -44,28 +44,56 @@
         ></EditText>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_gravity="end"
+        android:layout_marginTop="30sp"
+        android:gravity="end"
         >
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="취소"
-            android:layout_marginTop="30sp"
+        <androidx.cardview.widget.CardView
+            android:layout_width="100sp"
+            android:layout_height="50sp"
+            app:cardCornerRadius="16sp"
             android:id="@+id/comment_cancle"
-            ></Button>
+            android:backgroundTint="#03A9F4"
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="확인"
-            android:layout_marginLeft="20sp"
-            android:layout_marginTop="30sp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:text="취소"
+                android:fontFamily="@font/jua"
+                android:textColor="#FFFFFF"
+                android:layout_gravity="center"/>
+
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="100sp"
+            android:layout_height="50sp"
+            app:cardCornerRadius="16sp"
             android:id="@+id/comment_upload"
-            ></Button>
+            android:backgroundTint="#03A9F4"
+            android:layout_marginLeft="30sp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:text="확인"
+                android:fontFamily="@font/jua"
+                android:textColor="#FFFFFF"
+                android:layout_gravity="center"/>
+
+
+        </androidx.cardview.widget.CardView>
+
+
 
 
 

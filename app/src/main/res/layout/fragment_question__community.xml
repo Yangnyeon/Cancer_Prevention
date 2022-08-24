@@ -8,10 +8,6 @@
     android:id="@+id/Community_drawrlayout"
     android:background="@drawable/cancer_background">
 
-
-
-
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">

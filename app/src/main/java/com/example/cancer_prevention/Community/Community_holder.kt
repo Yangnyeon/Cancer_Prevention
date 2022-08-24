@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
+import androidx.cardview.widget.CardView
 import androidx.core.view.setPadding
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -163,8 +164,8 @@ class Community_holder : AppCompatActivity() {
 
             val mAlertDialog = mBuilder.show()
 
-            val comment_upload = mDialogView.findViewById<Button>(R.id.comment_upload)
-            val comment_cancle = mDialogView.findViewById<Button>(R.id.comment_cancle)
+            val comment_upload = mDialogView.findViewById<CardView>(R.id.comment_upload)
+            val comment_cancle = mDialogView.findViewById<CardView>(R.id.comment_cancle)
             val edit_nickname = mDialogView.findViewById<EditText>(R.id.edit_nickname)
             val edit_password = mDialogView.findViewById<EditText>(R.id.edit_password)
 

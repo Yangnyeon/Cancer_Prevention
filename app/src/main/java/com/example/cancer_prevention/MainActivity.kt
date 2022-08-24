@@ -7,10 +7,11 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.core.view.GravityCompat
 import com.example.cancer_prevention.Community.Community_Fragment
+import com.example.cancer_prevention.Community.Community_Write
 import com.example.cancer_prevention.Introduce.Introduce_Screen
-import com.example.cancer_prevention.Main.Intro_Screen
-import com.example.cancer_prevention.Main.Main_Fragment
-import com.example.cancer_prevention.Main.Main_bar
+import com.example.cancer_prevention.Main.*
+import com.example.cancer_prevention.Main.Notice.Notice_Activity
+import com.example.cancer_prevention.Nutrient.nutrient_screen
 import com.example.cancer_prevention.Question_Community.Question_Community
 import com.example.cancer_prevention.Retrofit.Cancer_Retrofit
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -119,7 +120,11 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         when(item.itemId){
             R.id.menu_item1-> onFragmentChanged(1)
             R.id.menu_item2-> onFragmentChanged(3)
-            R.id.menu_item3-> Toast.makeText(this,"item3 clicked",Toast.LENGTH_SHORT).show()
+            R.id.menu_item3-> startActivity(Intent(this, Notice_Activity::class.java))
+            R.id.menu_item4-> startActivity(Intent(this, nutrient_screen::class.java))
+            R.id.menu_item5-> startActivity(Intent(this, Rx_java_tranning::class.java))
+            R.id.menu_item6-> onFragmentChanged(4)
+            R.id.menu_item7-> startActivity(Intent(this, nutrient_screen::class.java))
         }
         return false
     }
@@ -143,6 +148,12 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
             bottonavi.setItemSelected(R.id.second)
             val Question_Community = Question_Community()
             supportFragmentManager.beginTransaction().replace(R.id.container, Question_Community).commit()
+            main_drawer_layout.closeDrawer(GravityCompat.START)
+        }
+        else if (index == 4) {
+            bottonavi.setItemSelected(R.id.first)
+            val Cancer_bad_food = Cancer_bad_food()
+            supportFragmentManager.beginTransaction().replace(R.id.container, Cancer_bad_food).commit()
             main_drawer_layout.closeDrawer(GravityCompat.START)
         }
     }

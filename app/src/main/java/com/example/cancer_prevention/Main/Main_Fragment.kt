@@ -149,9 +149,6 @@ class Main_Fragment : Fragment() {
 
         //공지사항
 
-        CoroutineScope(Dispatchers.Main).launch {
-
-            //혹시모를 ANR 방지로 코루틴으로 비동기처리
 
             val notice_adapter = Notice_Adapter(itemList, requireActivity())
 
@@ -192,7 +189,7 @@ class Main_Fragment : Fragment() {
                     // 실패할 경우z
                     Log.w("MainActivity", "Error getting documents: $exception")
                 }
-        }
+
 
 
 
