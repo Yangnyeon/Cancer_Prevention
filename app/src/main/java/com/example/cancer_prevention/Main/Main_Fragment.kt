@@ -42,18 +42,35 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.view.animation.BounceInterpolator
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.cancer_prevention.BuildConfig.*
 import com.example.cancer_prevention.Community.ListAdapter
 import com.example.cancer_prevention.Community.ListLayout
 import com.example.cancer_prevention.Community.loading_screen
 import com.example.cancer_prevention.Main.Notice.Notice_Adapter
 import com.example.cancer_prevention.Main.Notice.Notice_Layout
+import com.google.android.gms.common.api.GoogleApi
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import kotlinx.android.synthetic.main.activity_rx_java_tranning.*
 import kotlinx.coroutines.*
+import org.w3c.dom.Document
+import org.w3c.dom.Element
+import org.w3c.dom.Node
+import org.w3c.dom.NodeList
 import java.lang.Runnable
+import java.net.URL
+import java.text.SimpleDateFormat
+import java.util.*
+import javax.xml.parsers.DocumentBuilderFactory
 
+
+var korona : String = ""
+
+var real_korona = ""
+
+var arr = ""
 
 class Main_Fragment : Fragment() {
 
@@ -73,6 +90,8 @@ class Main_Fragment : Fragment() {
     val itemList = arrayListOf<Notice_Layout>()    // 리스트 아이템 배열
 
     //
+
+
 
 
     override fun onCreateView(
@@ -191,14 +210,115 @@ class Main_Fragment : Fragment() {
                 }
 
 
+        korona()
+
+        if (binding.koronaText.text == "") {
+            val now = System.currentTimeMillis() - 1000*60*60*24
+            // val simpleDate = SimpleDateFormat("yyyyMMdd")
+            val simpleDate = SimpleDateFormat("yyyy")
+
+            val date_year = Date(now)
+
+            val getYear = simpleDate.format(date_year)
+            //
+
+            val simpleDate_month = SimpleDateFormat("MM")
+
+            val date_month = Date(now)
+
+            val getmonth = simpleDate_month.format(date_month)
+
+            //
+
+            val simpleDate_day = SimpleDateFormat("dd")
+
+            val date_day = Date(now)
+
+            val getday = simpleDate_day.format(date_day)
 
 
+            val key = GOOGLE_API_SERVICE3
 
-        //
+            val pageNo = "&pageNo=1"
+
+            val numOfRows ="&numOfRows=10"
+
+            val startCreateDt = "&startCreateDt=" + getYear + getmonth + getday
+
+
+            val endCreateDt = "&endCreateDt=" + getYear + getmonth + getday
+
+            val url = Korona_address+key+pageNo+numOfRows+startCreateDt+endCreateDt
+
+            val thread = Thread(NetworkThread(url))
+            thread.start()
+            thread.join()
+
+            binding.koronaText.text = korona
+        }
+
+
 
 
         return binding.root
     }
+
+    //
+
+
+    //코로나 확진자수
+    class NetworkThread(var url: String): Runnable {
+
+
+        override fun run() {
+
+            try {
+
+                val xml: Document =
+                    DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(url)
+
+
+                xml.documentElement.normalize()
+
+           
+                val list: NodeList = xml.getElementsByTagName("item")
+
+   
+                for (i in 0..list.length - 1) {
+
+                    if(i == list.length -1) {
+
+                        val n: Node = list.item(i)
+
+                        if (n.getNodeType() == Node.ELEMENT_NODE) {
+
+                            val elem = n as Element
+
+                            val map = mutableMapOf<String, String>()
+
+
+                            for (j in 0..elem.attributes.length - 1) {
+
+                                map.putIfAbsent(
+                                    elem.attributes.item(j).nodeName,
+                                    elem.attributes.item(j).nodeValue
+                                )
+
+                            }
+
+                            korona += "금일 코로나 확진자수 : ${elem.getElementsByTagName("incDec").item(0).textContent}" + " 명"
+
+                        }
+                    }
+
+                }
+            } catch (e: Exception) {
+
+            }
+        }
+
+    }
+    //
 
 
     private fun setPage() {
@@ -210,6 +330,50 @@ class Main_Fragment : Fragment() {
         }
 
         currentPosition += 1
+    }
+
+    fun korona() {
+        val now = System.currentTimeMillis()
+        // val simpleDate = SimpleDateFormat("yyyyMMdd")
+        val simpleDate = SimpleDateFormat("yyyy")
+
+        val date_year = Date(now)
+
+        val getYear = simpleDate.format(date_year)
+        //
+
+        val simpleDate_month = SimpleDateFormat("MM")
+
+        val date_month = Date(now)
+
+        val getmonth = simpleDate_month.format(date_month)
+
+        //
+
+        val simpleDate_day = SimpleDateFormat("dd")
+
+        val date_day = Date(now)
+
+        val getday = simpleDate_day.format(date_day)
+
+
+        val key = GOOGLE_API_SERVICE3
+
+        val pageNo = "&pageNo=1"
+
+        val numOfRows ="&numOfRows=10"
+
+        val startCreateDt = "&startCreateDt=" + getYear + getmonth + getday
+
+        val endCreateDt = "&endCreateDt=" + getYear + getmonth + getday
+
+        val url = Korona_address+key+pageNo+numOfRows+startCreateDt+endCreateDt
+
+        val thread = Thread(NetworkThread(url))
+        thread.start()
+        thread.join()
+
+        binding.koronaText.text = korona
     }
 
 

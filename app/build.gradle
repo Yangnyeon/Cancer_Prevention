@@ -27,6 +27,13 @@ android {
 
         buildConfigField "String", "GOOGLE_API_SERVICE2", properties['api_service_key']
 
+        buildConfigField "String", "GOOGLE_API_SERVICE3", properties['api_service_key3']
+
+        buildConfigField "String", "Korona_address", properties['korona_address']
+
+        
+
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -118,6 +125,11 @@ dependencies {
     implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
     implementation 'io.reactivex.rxjava3:rxjava:3.0.0'
 
+    //xml parser
+    implementation 'com.tickaroo.tikxml:annotation:0.8.13'
+    implementation 'com.tickaroo.tikxml:core:0.8.13'
+    implementation 'com.tickaroo.tikxml:retrofit-converter:0.8.13'
+    kapt 'com.tickaroo.tikxml:processor:0.8.13'
 
 
 

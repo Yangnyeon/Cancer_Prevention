@@ -23,7 +23,8 @@ class Cancer_Retrofit : AppCompatActivity() {
 
     private lateinit var binding : ActivityCancerRetrofitBinding
 
-    private val myAdapter by lazy { Cancer_adapter()
+    private val myAdapter by lazy {
+        Cancer_adapter()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
