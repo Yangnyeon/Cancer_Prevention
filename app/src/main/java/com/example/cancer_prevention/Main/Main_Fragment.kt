@@ -50,6 +50,7 @@ import com.example.cancer_prevention.Community.ListLayout
 import com.example.cancer_prevention.Community.loading_screen
 import com.example.cancer_prevention.Main.Notice.Notice_Adapter
 import com.example.cancer_prevention.Main.Notice.Notice_Layout
+import com.example.cancer_prevention.MainActivity
 import com.google.android.gms.common.api.GoogleApi
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
@@ -92,15 +93,15 @@ class Main_Fragment : Fragment() {
     //
 
 
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
 
+
         _binding = FragmentMainBinding.inflate(inflater, container, false)
+
 
         binding.gogoRetrofit.setOnClickListener {
             startActivity(Intent(requireActivity(), Cancer_Retrofit::class.java))
@@ -114,9 +115,16 @@ class Main_Fragment : Fragment() {
             startActivity(Intent(requireActivity(), Calendar_Room::class.java))
         }
 
+
+
+
         binding.NutrientGogo.setOnClickListener {
-            startActivity(Intent(requireActivity(), nutrient_screen::class.java))
+            var main_activity = MainActivity()
+            main_activity = activity as MainActivity
+            main_activity.onFragmentChanged(5)
         }
+
+
 
         binding.gogoRetrofit2.setOnClickListener {
             startActivity(Intent(requireActivity(), Cancer_Room::class.java))
@@ -213,18 +221,18 @@ class Main_Fragment : Fragment() {
         korona()
 
         if (binding.koronaText.text == "") {
-            val now = System.currentTimeMillis() - 1000*60*60*24
+            val yesterday_now = System.currentTimeMillis() - 1000*60*60*24
             // val simpleDate = SimpleDateFormat("yyyyMMdd")
             val simpleDate = SimpleDateFormat("yyyy")
 
-            val date_year = Date(now)
+            val date_year = Date(yesterday_now)
 
             val getYear = simpleDate.format(date_year)
             //
 
             val simpleDate_month = SimpleDateFormat("MM")
 
-            val date_month = Date(now)
+            val date_month = Date(yesterday_now)
 
             val getmonth = simpleDate_month.format(date_month)
 
@@ -232,10 +240,9 @@ class Main_Fragment : Fragment() {
 
             val simpleDate_day = SimpleDateFormat("dd")
 
-            val date_day = Date(now)
+            val date_day = Date(yesterday_now)
 
             val getday = simpleDate_day.format(date_day)
-
 
             val key = GOOGLE_API_SERVICE3
 
@@ -306,7 +313,7 @@ class Main_Fragment : Fragment() {
 
                             }
 
-                            korona += "금일 코로나 확진자수 : ${elem.getElementsByTagName("incDec").item(0).textContent}" + " 명"
+                            korona = "코로나 확진자수 : ${elem.getElementsByTagName("incDec").item(0).textContent}" + " 명"
 
                         }
                     }
@@ -355,7 +362,6 @@ class Main_Fragment : Fragment() {
         val date_day = Date(now)
 
         val getday = simpleDate_day.format(date_day)
-
 
         val key = GOOGLE_API_SERVICE3
 

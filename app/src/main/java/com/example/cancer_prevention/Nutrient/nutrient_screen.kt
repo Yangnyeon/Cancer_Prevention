@@ -24,7 +24,7 @@ import androidx.activity.viewModels as viewModels1
 class nutrient_screen : AppCompatActivity() {
 
     lateinit var binding : ActivityNutrientScreenBinding
-    lateinit var viewmodel : nutrient_viewmodel
+    //lateinit var viewmodel : nutrient_viewmodel
     lateinit var adapter : nutrient_adapter
 
 
@@ -34,14 +34,17 @@ class nutrient_screen : AppCompatActivity() {
 
         binding = ActivityNutrientScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+/*
         viewmodel = ViewModelProvider(this).get(nutrient_viewmodel::class.java)
 
+
+ */
         /*
         initRecyclerView()
 
          */
 
+        /*
 
         FirebaseFirestore.getInstance().collection("Nutrient")
             .get()
@@ -56,7 +59,15 @@ class nutrient_screen : AppCompatActivity() {
                 Toast.makeText(this, "실패",Toast.LENGTH_SHORT).show()
             }
 
+         */
 
+
+        binding.NutrientRecyclerView.apply {
+            layoutManager = LinearLayoutManager(this@nutrient_screen)
+        }
+
+
+        /*
         viewmodel.nutrinet_data.observe(this, Observer {
             /*
             initRecyclerView()
@@ -68,26 +79,13 @@ class nutrient_screen : AppCompatActivity() {
             adapter.notifyDataSetChanged()
         })
 
-
-
-    }
-
-    private fun initRecyclerView(){
-
-
-        binding.NutrientRecyclerView.apply {
-            layoutManager = LinearLayoutManager(this@nutrient_screen)
-        }
+         */
 
 
 
     }
 
-    private fun setAdapter(Consult_List : ArrayList<nutrient_model>) {
-        val mAdapter = nutrient_adapter(this,Consult_List)
-        binding.NutrientRecyclerView.adapter = mAdapter
-        binding.NutrientRecyclerView.layoutManager = LinearLayoutManager(this@nutrient_screen)
-    }
+
 
 
 

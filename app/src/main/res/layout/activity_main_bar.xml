@@ -26,8 +26,6 @@
             android:id="@+id/bar_title"
             android:layout_gravity="center" />
 
-
-
     </androidx.appcompat.widget.Toolbar>
 
 </LinearLayout>

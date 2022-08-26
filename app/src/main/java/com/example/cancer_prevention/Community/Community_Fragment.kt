@@ -1,41 +1,19 @@
 package com.example.cancer_prevention.Community
 
-import android.app.ProgressDialog
 import android.content.Intent
-import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
-import android.widget.Toast
-import android.widget.Toolbar
-import androidx.activity.viewModels
-import androidx.core.app.ActivityCompat.recreate
-import androidx.core.view.GravityCompat
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.cancer_prevention.Community_Viewmodel
-import com.example.cancer_prevention.Main.Notice.Notice_Adapter
-import com.example.cancer_prevention.Main.Notice.Notice_Layout
-import com.example.cancer_prevention.Nutrient.nutrient_viewmodel
 import com.example.cancer_prevention.Question_Community.Question_Adapter
 import com.example.cancer_prevention.Question_Community.Question_Layout
-import com.example.cancer_prevention.Question_Community.Question_Write
-import com.example.cancer_prevention.R
-import com.example.cancer_prevention.databinding.ActivityCommunityWriteBinding
 import com.example.cancer_prevention.databinding.FragmentCommunityBinding
-import com.example.cancer_prevention.room.TodoViewModel
-import com.google.android.material.navigation.NavigationView
-import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
-import kotlinx.android.synthetic.main.fragment_community_.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class Community_Fragment : Fragment() {

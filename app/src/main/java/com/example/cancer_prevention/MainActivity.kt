@@ -11,6 +11,7 @@ import com.example.cancer_prevention.Community.Community_Write
 import com.example.cancer_prevention.Introduce.Introduce_Screen
 import com.example.cancer_prevention.Main.*
 import com.example.cancer_prevention.Main.Notice.Notice_Activity
+import com.example.cancer_prevention.Nutrient.Nutritner_Fragment
 import com.example.cancer_prevention.Nutrient.nutrient_screen
 import com.example.cancer_prevention.Question_Community.Question_Community
 import com.example.cancer_prevention.Retrofit.Cancer_Retrofit
@@ -71,8 +72,9 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         supportActionBar?.setDisplayHomeAsUpEnabled(true) // 드로어를 꺼낼 홈 버튼 활성화
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_format_list_bulleted_24) // 홈버튼 이미지 변경
         supportActionBar?.setDisplayShowTitleEnabled(false) // 툴바에 타이틀 안보이게
+
         main_drawer_layout.bar_title.setOnClickListener {
-            Toast.makeText(this@MainActivity, "하하",Toast.LENGTH_SHORT).show()
+            onFragmentChanged(0)
         }
 
         main_navigationView.setNavigationItemSelectedListener(this) //navigation 리스너
@@ -110,7 +112,6 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         when(item.itemId){
             android.R.id.home->{ // 메뉴 버튼
                 main_drawer_layout.openDrawer(GravityCompat.START)    // 네비게이션 드로어 열기
-
             }
         }
         return super.onOptionsItemSelected(item)
@@ -155,6 +156,11 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
             val Cancer_bad_food = Cancer_bad_food()
             supportFragmentManager.beginTransaction().replace(R.id.container, Cancer_bad_food).commit()
             main_drawer_layout.closeDrawer(GravityCompat.START)
+        }
+        else if (index == 5) {
+            bottonavi.setItemSelected(R.id.first)
+            val Nutrinet_Fragment = Nutritner_Fragment()
+            supportFragmentManager.beginTransaction().replace(R.id.container, Nutrinet_Fragment).commit()
         }
     }
 }
