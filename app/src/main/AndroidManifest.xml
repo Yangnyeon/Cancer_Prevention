@@ -11,11 +11,14 @@
         android:allowBackup="false"
         android:icon="@drawable/cancer_app_icon"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:largeHeap="true"
         android:theme="@style/Theme.Cancer_Prevention"
         android:usesCleartextTraffic="true">
+        <activity
+            android:name=".Nutrient.Nutrient_bottom_sheet"
+            android:exported="true" />
         <activity
             android:name=".korona.korona_test"
             android:exported="true" />

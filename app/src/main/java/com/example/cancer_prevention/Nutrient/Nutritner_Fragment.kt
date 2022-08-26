@@ -36,7 +36,10 @@ class Nutritner_Fragment : Fragment() {
                     result ->
                 for(document in result) {
                     val user = result.toObjects(nutrient_model::class.java)
-                    binding.NutrientRecyclerView.adapter = nutrient_adapter(requireActivity(),user)
+                    binding.NutrientRecyclerView.adapter =
+                        fragmentManager?.let { nutrient_adapter(requireActivity(),user, it) }
+
+                    //  binding.NutrientRecyclerView.adapter = nutrient_adapter(requireActivity(),user, fragmentManager)
                 }
             }
             .addOnFailureListener {
