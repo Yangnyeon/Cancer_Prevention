@@ -1,4 +1,4 @@
-package com.example.cancer_prevention.Nutrient
+package com.example.cancer_prevention.Bad_Food
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,20 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.os.bundleOf
-import com.bumptech.glide.Glide
 import com.example.cancer_prevention.R
-import com.example.cancer_prevention.databinding.FragmentNutrientBottomSheetBinding
-import com.example.cancer_prevention.databinding.FragmentNutritnerBinding
+import com.example.cancer_prevention.databinding.FragmentBadFoodBottomSheetBinding
+import com.example.cancer_prevention.databinding.FragmentCancerBadFoodBinding
+import com.example.cancer_prevention.databinding.FragmentFoodBottomSheetBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.android.synthetic.main.activity_community_holder.*
-import kotlinx.android.synthetic.main.fragment_nutrient__bottom__sheet.*
 
 
-class Nutrient_Bottom_Sheet : BottomSheetDialogFragment() {
+class Bad_Food_BottomSheet: BottomSheetDialogFragment()  {
 
-    private var _binding : FragmentNutrientBottomSheetBinding?= null    // 뷰 바인딩
+    private var _binding : FragmentBadFoodBottomSheetBinding?= null    // 뷰 바인딩
     private val binding get() = _binding!!
 
     val db = FirebaseFirestore.getInstance()
@@ -28,24 +25,21 @@ class Nutrient_Bottom_Sheet : BottomSheetDialogFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        _binding = FragmentNutrientBottomSheetBinding.inflate(inflater, container, false)
-
-
+        _binding = FragmentBadFoodBottomSheetBinding.inflate(inflater, container, false)
 
         val extra = arguments
 
-        var doc = extra?.getString("Nutrient_Doc")
-        var nutrinent_content = extra?.getString("Nutrient_Content")
+        var Bad_Food_doc = extra?.getString("Bad_Food_Doc")
+        var Bad_Food_content = extra?.getString("Bad_Food_Content")
 
 
-        db.collection("Nutrient")
-            .document(doc.toString())
+        db.collection("Bad_Food")
+            .document(Bad_Food_doc.toString())
             .get()
             .addOnSuccessListener { result ->
                 try {
                     with(result) {
-                        binding.nutrientText.text = nutrinent_content.toString()
+                        binding.BadFoodText.text = Bad_Food_content.toString()
                     }
                 } catch (e: Exception) {
                     Toast.makeText(requireActivity(), e.toString(), Toast.LENGTH_SHORT).show()
@@ -55,15 +49,8 @@ class Nutrient_Bottom_Sheet : BottomSheetDialogFragment() {
                 Toast.makeText(requireActivity(), it.toString(), Toast.LENGTH_SHORT).show()
             }
 
-
-
-
-
-
-
-
-
         return binding.root
     }
+
 
 }

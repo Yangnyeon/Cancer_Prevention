@@ -5,13 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
-    <ImageView
-        android:layout_width="40sp"
-        android:layout_height="40sp"
-        android:layout_margin="16sp"
-        android:src="@drawable/ic_baseline_keyboard_arrow_left_24"
-        android:id="@+id/Question_back"
-        ></ImageView>
+    <include layout="@layout/activity_main_bar_sub"/>
 
     <RelativeLayout
         android:layout_width="match_parent"

@@ -30,6 +30,8 @@ class Nutritner_Fragment : Fragment() {
         _binding = FragmentNutritnerBinding.inflate(inflater, container, false)
 
 
+
+        /*
             db.collection("Nutrient")
             .get()
             .addOnSuccessListener {
@@ -47,6 +49,8 @@ class Nutritner_Fragment : Fragment() {
             }
 
 
+
+
         binding.NutrientRecyclerView.apply {
             layoutManager = GridLayoutManager(requireActivity(), 2)
         }
@@ -57,6 +61,8 @@ class Nutritner_Fragment : Fragment() {
             main_activity.onFragmentChanged(0)
         }
 
+
+         */
 
         return binding.root
     }

@@ -15,6 +15,8 @@ import com.example.cancer_prevention.R
 import com.example.cancer_prevention.R.layout.activity_cancer_retrofit
 import com.example.cancer_prevention.databinding.ActivityCancerRetrofitBinding
 import kotlinx.android.synthetic.main.activity_cancer_retrofit.*
+import kotlinx.android.synthetic.main.activity_main_bar_sub.*
+import kotlinx.android.synthetic.main.activity_main_bar_sub.view.*
 import retrofit2.Response
 
 class Cancer_Retrofit : AppCompatActivity() {
@@ -56,6 +58,14 @@ class Cancer_Retrofit : AppCompatActivity() {
         })
 
         viewModel.getPost(50,1,25)
+
+        setSupportActionBar(main_layout_toolbar_sub) // 툴바를 액티비티의 앱바로 지정
+        supportActionBar?.setDisplayShowTitleEnabled(false) // 툴바에 타이틀 안보이게
+
+        main_layout_toolbar_sub.go_finish.setOnClickListener {
+            finish()
+        }
+
     }
 
     private fun setAdapter(Consult_List : MutableList<data>) {

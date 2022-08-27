@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.room.Room
 import com.example.cancer_prevention.databinding.ActivityRoomBinding
 import com.example.cancer_prevention.room.Calendar.Calendar_Room
+import kotlinx.android.synthetic.main.activity_main_bar_sub.*
+import kotlinx.android.synthetic.main.activity_main_bar_sub.view.*
 import kotlinx.android.synthetic.main.activity_room.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -44,8 +46,6 @@ class Room_Activity : AppCompatActivity(), OnItemClick {
             //adapter.setData(it) 검색
             adapter.notifyDataSetChanged()
         })
-
-        binding.cigaretteSearchview.setOnQueryTextListener(searchViewTextListener)
 
         binding.btnAdd.setOnClickListener {
             lifecycleScope.launch(Dispatchers.IO){
@@ -83,6 +83,15 @@ class Room_Activity : AppCompatActivity(), OnItemClick {
 
 
         cigarette_count.text = count.toString()
+
+
+        setSupportActionBar(main_layout_toolbar_sub) // 툴바를 액티비티의 앱바로 지정
+        supportActionBar?.setDisplayShowTitleEnabled(false) // 툴바에 타이틀 안보이게
+
+        main_layout_toolbar_sub.go_finish.setOnClickListener {
+            finish()
+        }
+
 
 
 

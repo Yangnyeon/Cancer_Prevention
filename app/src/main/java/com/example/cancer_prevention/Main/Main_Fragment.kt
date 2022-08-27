@@ -44,6 +44,7 @@ import android.view.animation.BounceInterpolator
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.cancer_prevention.Bad_Food.Bad_Food_Activity
 import com.example.cancer_prevention.BuildConfig.*
 import com.example.cancer_prevention.Community.ListAdapter
 import com.example.cancer_prevention.Community.ListLayout
@@ -51,6 +52,7 @@ import com.example.cancer_prevention.Community.loading_screen
 import com.example.cancer_prevention.Main.Notice.Notice_Adapter
 import com.example.cancer_prevention.Main.Notice.Notice_Layout
 import com.example.cancer_prevention.MainActivity
+import com.example.cancer_prevention.Nutrient.nutrient_model
 import com.google.android.gms.common.api.GoogleApi
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
@@ -116,12 +118,8 @@ class Main_Fragment : Fragment() {
         }
 
 
-
-
         binding.NutrientGogo.setOnClickListener {
-            var main_activity = MainActivity()
-            main_activity = activity as MainActivity
-            main_activity.onFragmentChanged(5)
+            startActivity(Intent(requireActivity(), nutrient_screen::class.java))
         }
 
 
@@ -136,6 +134,10 @@ class Main_Fragment : Fragment() {
 
         binding.SelectGogo2.setOnClickListener {
             startActivity(Intent(requireActivity(), Rx_java_tranning::class.java))
+        }
+
+        binding.SelectGogo3.setOnClickListener {
+            startActivity(Intent(requireActivity(), Bad_Food_Activity::class.java))
         }
 
         val adapter11 = ViewPagerAdapter()

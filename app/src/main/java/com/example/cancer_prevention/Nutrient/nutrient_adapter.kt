@@ -26,18 +26,12 @@ import com.example.cancer_prevention.room.Cigarette
 import com.example.cancer_prevention.room.CigaretteAdapter
 import com.example.cancer_prevention.room.OnItemClick
 import com.example.cancer_prevention.room.TodoViewModel
+import okio.blackholeSink
 
-class nutrient_adapter(val context: Context, var nutrient_items: List<nutrient_model>, fragmentManager : FragmentManager) : RecyclerView.Adapter<nutrient_adapter.TodoViewHolder>() {
+class nutrient_adapter(val context: Context, var nutrient_items: List<nutrient_model>) : RecyclerView.Adapter<nutrient_adapter.TodoViewHolder>() {
 
     //private val nutrient_items = ArrayList<nutrient_model>()
 
-    private var nutrient_memoList = emptyList<nutrient_model>()
-
-    private var mFragmentManager : FragmentManager
-
-    init {
-        mFragmentManager = fragmentManager
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : TodoViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -50,15 +44,25 @@ class nutrient_adapter(val context: Context, var nutrient_items: List<nutrient_m
     }
 
     override fun onBindViewHolder(holder: TodoViewHolder, position: Int) {
-        val real_holder: TodoViewHolder = holder as TodoViewHolder
-        real_holder.bind(nutrient_items[position], mFragmentManager)
+        holder.bind(nutrient_items[position])
+
+        holder.itemView.setOnClickListener {
+            val Nutrinet_bottom_sheet = Nutrient_Bottom_Sheet()
+
+            var Nutrient_doc_bundle = bundleOf("Nutrient_Doc" to nutrient_items[position].Nutrient_Doc,
+            "Nutrient_Content" to nutrient_items[position].Nutrient_Content)
+
+            Nutrinet_bottom_sheet.arguments = Nutrient_doc_bundle
+
+            Nutrinet_bottom_sheet.show((context as nutrient_screen).supportFragmentManager, Nutrinet_bottom_sheet.tag)
+        }
 
     }
 
 
     inner class TodoViewHolder(private val binding: CancerNutrientBinding): RecyclerView.ViewHolder(binding.root){
 
-        fun bind(item: nutrient_model, fragmentManager: FragmentManager){
+        fun bind(item: nutrient_model){
 
             val uploadCurrent: nutrient_model = nutrient_items[position]
 
@@ -70,18 +74,6 @@ class nutrient_adapter(val context: Context, var nutrient_items: List<nutrient_m
                 .centerCrop()
                 .error(R.mipmap.ic_launcher_round)
                 .into(binding.foodHolderImage)
-
-            itemView.setOnClickListener {
-                val Nutrinet_bottom_sheet = Nutrient_Bottom_Sheet()
-
-                var Nutrient_doc_bundle = bundleOf(
-                    "Nutrient_Doc" to nutrient_items[position].Nutrient_Doc
-                )
-                Nutrinet_bottom_sheet.arguments = Nutrient_doc_bundle
-
-                Nutrinet_bottom_sheet.show(fragmentManager, Nutrinet_bottom_sheet.tag)
-            }
-
         }
     }
 

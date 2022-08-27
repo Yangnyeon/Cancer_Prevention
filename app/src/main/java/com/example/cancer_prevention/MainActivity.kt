@@ -73,9 +73,7 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_format_list_bulleted_24) // 홈버튼 이미지 변경
         supportActionBar?.setDisplayShowTitleEnabled(false) // 툴바에 타이틀 안보이게
 
-        main_drawer_layout.bar_title.setOnClickListener {
-            onFragmentChanged(0)
-        }
+
 
         main_navigationView.setNavigationItemSelectedListener(this) //navigation 리스너
 

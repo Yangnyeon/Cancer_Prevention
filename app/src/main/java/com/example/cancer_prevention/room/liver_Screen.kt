@@ -17,6 +17,8 @@ import androidx.core.view.setPadding
 import com.example.cancer_prevention.R
 import kotlinx.android.synthetic.main.activity_community_holder.*
 import kotlinx.android.synthetic.main.activity_liver_screen.*
+import kotlinx.android.synthetic.main.activity_main_bar_sub.*
+import kotlinx.android.synthetic.main.activity_main_bar_sub.view.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -189,6 +191,13 @@ class liver_Screen : AppCompatActivity() {
 
         } catch(e: Exception) {
 
+        }
+
+        setSupportActionBar(main_layout_toolbar_sub) // 툴바를 액티비티의 앱바로 지정
+        supportActionBar?.setDisplayShowTitleEnabled(false) // 툴바에 타이틀 안보이게
+
+        main_layout_toolbar_sub.go_finish.setOnClickListener {
+            finish()
         }
 
 

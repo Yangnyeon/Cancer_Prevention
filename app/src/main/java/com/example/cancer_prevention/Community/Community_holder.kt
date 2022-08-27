@@ -15,12 +15,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.cancer_prevention.Community.Comment.Comment_ListAdapter
 import com.example.cancer_prevention.Community.Comment.Comment_ListLayout
+import com.example.cancer_prevention.MainActivity
 import com.example.cancer_prevention.R
 import com.example.cancer_prevention.databinding.ActivityCommunityHolderBinding
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import kotlinx.android.synthetic.main.activity_community_holder.*
+import kotlinx.android.synthetic.main.activity_main_bar_sub.*
+import kotlinx.android.synthetic.main.activity_main_bar_sub.view.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -35,6 +38,7 @@ class Community_holder : AppCompatActivity() {
     var adapter = Comment_ListAdapter(itemList2, this)
 
     val itemList = arrayListOf<ListLayout>()
+
 
 
 
@@ -55,7 +59,6 @@ class Community_holder : AppCompatActivity() {
 
         //
 
-        back.setOnClickListener(View.OnClickListener { finish() })
 
         intent = intent // 인텐트 받아오기
 
@@ -371,6 +374,13 @@ class Community_holder : AppCompatActivity() {
 
             }
             builder.show()
+
+            setSupportActionBar(main_layout_toolbar_sub) // 툴바를 액티비티의 앱바로 지정
+            supportActionBar?.setDisplayShowTitleEnabled(false) // 툴바에 타이틀 안보이게
+
+            main_layout_toolbar_sub.go_finish.setOnClickListener {
+                finish()
+            }
 
 
 

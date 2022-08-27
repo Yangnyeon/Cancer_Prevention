@@ -13,6 +13,8 @@ import com.example.cancer_prevention.room.OnItemClick
 import com.example.cancer_prevention.room.Cigarette
 import com.example.cancer_prevention.room.CigaretteAdapter
 import com.example.cancer_prevention.room.TodoViewModel
+import kotlinx.android.synthetic.main.activity_main_bar_sub.*
+import kotlinx.android.synthetic.main.activity_main_bar_sub.view.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
@@ -91,6 +93,14 @@ class Calendar_Room : AppCompatActivity() , OnItemClick{
             adapter.setData(it)
             Log.d("test5", "onCreateView: gg")
         })
+
+        setSupportActionBar(main_layout_toolbar_sub) // 툴바를 액티비티의 앱바로 지정
+        supportActionBar?.setDisplayShowTitleEnabled(false) // 툴바에 타이틀 안보이게
+
+        main_layout_toolbar_sub.go_finish.setOnClickListener {
+            finish()
+        }
+
 
     }
 

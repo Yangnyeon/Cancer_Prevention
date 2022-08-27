@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Nutrient.nutrient_screen"
+    tools:context=".Bad_Food.Bad_Food_Activity"
     android:orientation="vertical">
 
     <include layout="@layout/activity_main_bar_sub"/>
@@ -12,9 +12,8 @@
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/Nutrient_RecyclerView"
+        android:id="@+id/BAD_Food_RecyclerView"
         android:overScrollMode="never"
         ></androidx.recyclerview.widget.RecyclerView>
-
 
 </LinearLayout>

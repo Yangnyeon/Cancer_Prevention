@@ -17,6 +17,9 @@
         android:theme="@style/Theme.Cancer_Prevention"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".Bad_Food.Bad_Food_Activity"
+            android:exported="true" />
+        <activity
             android:name=".Nutrient.Nutrient_bottom_sheet"
             android:exported="true" />
         <activity

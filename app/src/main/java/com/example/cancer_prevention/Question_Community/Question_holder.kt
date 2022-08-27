@@ -26,9 +26,10 @@ import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import kotlinx.android.synthetic.main.activity_community_holder.*
-import kotlinx.android.synthetic.main.activity_community_holder.back
 import kotlinx.android.synthetic.main.activity_community_holder.comment_edit
 import kotlinx.android.synthetic.main.activity_community_holder.commnet_button
+import kotlinx.android.synthetic.main.activity_main_bar_sub.*
+import kotlinx.android.synthetic.main.activity_main_bar_sub.view.*
 import kotlinx.android.synthetic.main.activity_question_holder.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -60,8 +61,6 @@ class Question_holder : AppCompatActivity() {
         binding.QuestionRecyclerViewCommunityComment.adapter = adapter
 
         //
-
-        Question_back.setOnClickListener(View.OnClickListener { finish() })
 
         intent = intent // 인텐트 받아오기
 
@@ -376,6 +375,14 @@ class Question_holder : AppCompatActivity() {
 
 
         }
+
+        setSupportActionBar(main_layout_toolbar_sub) // 툴바를 액티비티의 앱바로 지정
+        supportActionBar?.setDisplayShowTitleEnabled(false) // 툴바에 타이틀 안보이게
+
+        main_layout_toolbar_sub.go_finish.setOnClickListener {
+            finish()
+        }
+
 
 
 

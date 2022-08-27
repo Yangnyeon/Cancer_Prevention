@@ -8,6 +8,8 @@
     android:orientation="vertical"
     >
 
+    <include layout="@layout/activity_main_bar_sub"/>
+
     <ImageView
         android:layout_width="40sp"
         android:layout_height="40sp"
