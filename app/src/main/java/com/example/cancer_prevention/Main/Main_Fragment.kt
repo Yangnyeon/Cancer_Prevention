@@ -315,7 +315,7 @@ class Main_Fragment : Fragment() {
 
                             }
 
-                            korona = "코로나 확진자수 : ${elem.getElementsByTagName("incDec").item(0).textContent}" + " 명"
+                            korona = "금일 코로나 확진자수 : ${elem.getElementsByTagName("incDec").item(0).textContent}" + " 명"
 
                         }
                     }
