@@ -67,10 +67,7 @@ class Notice_holder : AppCompatActivity() {
                     Toast.makeText(this@Notice_holder, e.toString() , Toast.LENGTH_SHORT).show()
                 }
             }
-
-        binding.NoticeHolderBack.setOnClickListener {
-            finish()
-        }
+        
 
         setSupportActionBar(main_layout_toolbar_sub) // 툴바를 액티비티의 앱바로 지정
         supportActionBar?.setDisplayShowTitleEnabled(false) // 툴바에 타이틀 안보이게

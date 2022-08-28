@@ -9,6 +9,8 @@
     android:background="@drawable/divorce_button_image2"
     >
 
+    <include layout="@layout/activity_main_bar_sub"/>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

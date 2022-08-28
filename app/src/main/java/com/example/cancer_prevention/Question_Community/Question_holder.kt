@@ -205,6 +205,8 @@ class Question_holder : AppCompatActivity() {
 
                         mAlertDialog.dismiss()
 
+                        binding.QuestionCommentEdit.setText("")
+
 
                         //go_board2.putExtra("board_doc", it.toString())
                         // startActivity(go_board2)
@@ -395,7 +397,7 @@ class Question_holder : AppCompatActivity() {
         db.collection("Question")
             .document(holder_doc.toString())
             .collection("Question_Comment")// 작업할 컬렉션
-            .orderBy(" Question_Date", Query.Direction.ASCENDING)
+            .orderBy("Question_Date", Query.Direction.ASCENDING)
             .get() // 문서 가져오기
             .addOnSuccessListener { result ->
                 // 성공할 경우
@@ -419,6 +421,7 @@ class Question_holder : AppCompatActivity() {
                 // 실패할 경우
                 Log.w("TAG", "Error getting documents: $exception")
             }
+
     }
 
 }

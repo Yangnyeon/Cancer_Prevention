@@ -14,6 +14,8 @@ import com.example.cancer_prevention.R
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_community_write.*
+import kotlinx.android.synthetic.main.activity_main_bar_sub.*
+import kotlinx.android.synthetic.main.activity_main_bar_sub.view.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -59,6 +61,14 @@ class Community_Write : AppCompatActivity() {
             intent.type = "image/*"
             startActivityForResult(intent, IMAGE_PICK)
         }
+
+        setSupportActionBar(main_layout_toolbar_sub) // 툴바를 액티비티의 앱바로 지정
+        supportActionBar?.setDisplayShowTitleEnabled(false) // 툴바에 타이틀 안보이게
+
+        main_layout_toolbar_sub.go_finish.setOnClickListener {
+            finish()
+        }
+
 
     }
 
@@ -177,6 +187,9 @@ class Community_Write : AppCompatActivity() {
                     }
             }
         }
+
+
+
     }
 
 

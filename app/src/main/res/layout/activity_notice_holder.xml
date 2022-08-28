@@ -10,13 +10,6 @@
 
     <include layout="@layout/activity_main_bar_sub"/>
 
-    <ImageView
-        android:layout_width="40sp"
-        android:layout_height="40sp"
-        android:layout_margin="16sp"
-        android:src="@drawable/ic_baseline_keyboard_arrow_left_24"
-        android:id="@+id/Notice_holder_back"
-        ></ImageView>
 
 
 

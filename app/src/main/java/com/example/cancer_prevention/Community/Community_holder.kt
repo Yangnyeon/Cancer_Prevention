@@ -375,16 +375,16 @@ class Community_holder : AppCompatActivity() {
             }
             builder.show()
 
-            setSupportActionBar(main_layout_toolbar_sub) // 툴바를 액티비티의 앱바로 지정
-            supportActionBar?.setDisplayShowTitleEnabled(false) // 툴바에 타이틀 안보이게
-
-            main_layout_toolbar_sub.go_finish.setOnClickListener {
-                finish()
-            }
-
-
-
         }
+
+
+        setSupportActionBar(main_layout_toolbar_sub) // 툴바를 액티비티의 앱바로 지정
+        supportActionBar?.setDisplayShowTitleEnabled(false) // 툴바에 타이틀 안보이게
+
+        main_layout_toolbar_sub.go_finish.setOnClickListener {
+            finish()
+        }
+
 
 
 
