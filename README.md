@@ -1,6 +1,7 @@
 # Cancer_Prevention
 
-<img src="https://user-images.githubusercontent.com/87749498/184590671-73bb8e22-7658-4a0b-b949-dc229d81ca80.jpg"  width="200" height="400"/>
+![ezgif-4-e3f52d2580](https://user-images.githubusercontent.com/87749498/188266247-a5685b2e-8feb-4fa6-959f-d360c9745eec.gif)
+
 
 
 Bottom_NavigationBar 참고 소스 : https://github.com/ismaeldivita/chip-navigation-bar
