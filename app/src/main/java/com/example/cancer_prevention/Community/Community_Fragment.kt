@@ -40,12 +40,9 @@ class Community_Fragment : Fragment() {
 
         val loadingAnimDialog = loading_screen(requireActivity())
 
-
         loadingAnimDialog.window!!.setBackgroundDrawable(ColorDrawable(android.graphics.Color.TRANSPARENT))
 
         loadingAnimDialog.show()
-
-
 
         binding.rvList.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
         binding.rvList.adapter = adapter123

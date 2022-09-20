@@ -6,10 +6,13 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class TodoViewModel(application: Application) : AndroidViewModel(application) {
+
+
     private val repository = CigaretteRepository(application)
     private val items = repository.getAll()
 
     private var _currentData = MutableLiveData<List<Cigarette>>()
+
     val currentData : LiveData<List<Cigarette>>
         get() = _currentData
 

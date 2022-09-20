@@ -28,7 +28,6 @@ class Room_Activity : AppCompatActivity(), OnItemClick {
     private val model: TodoViewModel by viewModels()
     private lateinit var adapter: CigaretteAdapter
 
-    var Cigarette_list : ArrayList<Cigarette> = java.util.ArrayList<Cigarette>()
 
     var count = 0
 

@@ -3,13 +3,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Bad_Food.Bad_Food_BottomSheet">
+    tools:context=".Bad_Food.Bad_Food_BottomSheet"
+    android:background="@drawable/food_back11">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:textSize="24sp"
         android:id="@+id/Bad_Food_text"
+        android:text="하하"
+        android:fontFamily="@font/jua"
+        android:textColor="#000000"
         android:gravity="center"/>
 
 </FrameLayout>

@@ -257,7 +257,7 @@ class Main_Fragment : Fragment() {
 
             val endCreateDt = "&endCreateDt=" + getYear + getmonth + getday
 
-            val url = Korona_address+key+pageNo+numOfRows+startCreateDt+endCreateDt
+            val url = "Korona_address+key+pageNo+numOfRows+startCreateDt+endCreateDt"
 
             val thread = Thread(NetworkThread(url))
             thread.start()
