@@ -278,7 +278,6 @@ class Main_Fragment : Fragment() {
     //코로나 확진자수
     class NetworkThread(var url: String): Runnable {
 
-
         override fun run() {
 
             try {
