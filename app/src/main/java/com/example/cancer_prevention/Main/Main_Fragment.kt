@@ -320,7 +320,8 @@ class Main_Fragment : Fragment() {
                     }
 
                 }
-            } catch (e: Exception) {
+            }
+            catch (e: Exception) {
 
             }
         }
