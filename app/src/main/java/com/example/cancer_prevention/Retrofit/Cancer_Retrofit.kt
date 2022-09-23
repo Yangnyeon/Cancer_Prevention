@@ -21,9 +21,9 @@ import retrofit2.Response
 
 class Cancer_Retrofit : AppCompatActivity() {
 
-    private lateinit var viewModel : Cancer_VIewModel
+        private lateinit var viewModel : Cancer_VIewModel
 
-    private lateinit var binding : ActivityCancerRetrofitBinding
+        private lateinit var binding : ActivityCancerRetrofitBinding
 
     private val myAdapter by lazy {
         Cancer_adapter()
@@ -61,6 +61,7 @@ class Cancer_Retrofit : AppCompatActivity() {
 
         setSupportActionBar(main_layout_toolbar_sub) // 툴바를 액티비티의 앱바로 지정
         supportActionBar?.setDisplayShowTitleEnabled(false) // 툴바에 타이틀 안보이게
+
 
         main_layout_toolbar_sub.go_finish.setOnClickListener {
             finish()

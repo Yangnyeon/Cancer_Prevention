@@ -9,4 +9,6 @@ class Cancer_Repository {
         //return Cancer_Instance.api.getAlbums(50, 1, 25)
         return Cancer_Instance.api.getAlbums(perpage,per,current)
     }
+
+
 }
