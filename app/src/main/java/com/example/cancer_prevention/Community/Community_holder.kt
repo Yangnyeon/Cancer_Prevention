@@ -97,6 +97,7 @@ class Community_holder : AppCompatActivity() {
             .addOnSuccessListener { result ->
                 try {
                     with(result) {
+
                         board_title.text = "${getString("name")}"
                         board_date.text = "${getString("com_date")}"
                         board_content.text = "${getString("number")}"
@@ -107,6 +108,7 @@ class Community_holder : AppCompatActivity() {
                             .load("${getString("imageUrl")}")
                             .fallback(null)
                             .into(real_holder_image)
+
                     }
                 } catch (e: Exception) {
                     Toast.makeText(this@Community_holder, e.toString() , Toast.LENGTH_SHORT).show()
