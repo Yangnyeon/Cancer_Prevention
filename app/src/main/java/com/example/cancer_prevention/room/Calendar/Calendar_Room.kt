@@ -4,15 +4,19 @@ import android.icu.number.IntegerWidth
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.applikeysolutions.cosmocalendar.selection.OnDaySelectedListener
+import com.applikeysolutions.cosmocalendar.selection.SingleSelectionManager
 import com.example.cancer_prevention.databinding.ActivityCalendarRoomBinding
 import com.example.cancer_prevention.room.OnItemClick
 import com.example.cancer_prevention.room.Cigarette
 import com.example.cancer_prevention.room.CigaretteAdapter
 import com.example.cancer_prevention.room.TodoViewModel
+import kotlinx.android.synthetic.main.activity_calendar_room.*
 import kotlinx.android.synthetic.main.activity_main_bar_sub.*
 import kotlinx.android.synthetic.main.activity_main_bar_sub.view.*
 import kotlinx.coroutines.Dispatchers
@@ -63,7 +67,34 @@ class Calendar_Room : AppCompatActivity() , OnItemClick{
 
         binding.calendarDateText.text = Integer.parseInt(getYear).toString() + "/" + Integer.parseInt(getMonth) + "/" + Integer.parseInt(getDay)
 
+        calendarView.selectionManager = SingleSelectionManager(OnDaySelectedListener {
+            val days: List<Calendar> = calendarView.getSelectedDates()
+            var result = ""
+            for (i in days.indices) {
+                /*
+                val week: String = SimpleDateFormat("EE").format(calendar.time)
+                val day_full =
+                    year.toString() + "년 " + (month + 1) + "월 " + day + "일 " + week + "요일"
+                result +=  "$day_full"
 
+                 */
+                val calendar = days[i]
+                val day = calendar[Calendar.DAY_OF_MONTH]
+                val month = calendar[Calendar.MONTH]
+                val year = calendar[Calendar.YEAR]
+
+                binding.calendarDateText.text = "${year}/${month + 1}/${day}"
+
+                memoViewModel.readDateData(year,month + 1,day).observe(this@Calendar_Room, Observer {
+                    adapter.setList(it)
+                    adapter.notifyDataSetChanged()
+                })
+
+            }
+        })
+
+
+        /*
 
         binding.calendarView.setOnDateChangeListener { _, year, month, day ->
             // 날짜 선택시 그 날의 정보 할당
@@ -87,6 +118,10 @@ class Calendar_Room : AppCompatActivity() , OnItemClick{
              */
 
         }
+
+
+         */
+
 
 
         memoViewModel.currentData.observe(this@Calendar_Room, Observer {

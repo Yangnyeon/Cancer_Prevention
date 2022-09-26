@@ -22,12 +22,22 @@
             android:descendantFocusability="blocksDescendants"
             >
 
-            <CalendarView
+            <com.applikeysolutions.cosmocalendar.view.CalendarView
                 android:id="@+id/calendarView"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                />
+                app:connectedDayIconPosition="top"
+                app:currentDayIconRes="@drawable/common_google_signin_btn_icon_dark"
+                app:currentDaySelectedIconRes="@drawable/common_google_signin_btn_icon_dark_focused"
+                app:currentDayTextColor="#f79256"
+                app:firstDayOfTheWeek="sunday"
+                app:orientation="horizontal"
+                app:selectedDayBackgroundColor="#FFEACA"
+                app:selectedDayBackgroundEndColor="#f79256"
+                app:selectedDayBackgroundStartColor="#f79256"
+                app:selectedDayTextColor="#FFFFFF"
+                app:selectionType="range"
+                app:weekendDayTextColor="#ef4550" />
 
             <TextView
                 android:id="@+id/calendarDateText"
