@@ -4,11 +4,11 @@
 
 
 
-Bottom_NavigationBar 참고 소스 : https://github.com/ismaeldivita/chip-navigation-bar
+Bottom_NavigationBar 라이브러리 : https://github.com/ismaeldivita/chip-navigation-bar
 
+Calendar_view 라이브러리 : https://github.com/ApplikeySolutions/CosmoCalendar
 
 사진 출저 : Pixabay 
-
 
 암 관련 Api 출저 : 공공데이터 포털 https://www.data.go.kr/iim/api/selectAPIAcountView.do 
 
