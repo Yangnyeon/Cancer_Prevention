@@ -65,6 +65,7 @@ class Community_Write : AppCompatActivity() {
         setSupportActionBar(main_layout_toolbar_sub) // 툴바를 액티비티의 앱바로 지정
         supportActionBar?.setDisplayShowTitleEnabled(false) // 툴바에 타이틀 안보이게
 
+
         main_layout_toolbar_sub.go_finish.setOnClickListener {
             finish()
         }
@@ -79,6 +80,8 @@ class Community_Write : AppCompatActivity() {
             image_upload.setImageURI(selectImage)
         }
     }
+
+
 
     private fun saveNote() {
         val title: String = edit_text_title2.text.toString()

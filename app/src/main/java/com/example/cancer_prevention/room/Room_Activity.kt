@@ -42,7 +42,6 @@ class Room_Activity : AppCompatActivity(), OnItemClick {
 
         model.getAll().observe(this@Room_Activity, Observer{
             adapter.setList(it)
-            //adapter.setData(it) 검색
             adapter.notifyDataSetChanged()
         })
 

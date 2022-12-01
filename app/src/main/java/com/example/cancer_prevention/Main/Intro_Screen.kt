@@ -25,12 +25,12 @@ class Intro_Screen : AppCompatActivity() {
         
          */
 
-        var intent = Intent(this, MainActivity::class.java)
-        CoroutineScope(Dispatchers.Main).launch {
-            delay(1500)
-            startActivity(intent)
-            //코루틴을 이용한 인트로화면 설계
-        }
+            var intent = Intent(this, MainActivity::class.java)
+            CoroutineScope(Dispatchers.Main).launch {
+                delay(1500)
+                startActivity(intent)
+                //코루틴을 이용한 인트로화면 설계
+            }
 
     }
 

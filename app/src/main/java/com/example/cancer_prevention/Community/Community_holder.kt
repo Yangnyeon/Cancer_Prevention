@@ -390,6 +390,7 @@ class Community_holder : AppCompatActivity() {
 
 
 
+
     }
 
     fun update() {

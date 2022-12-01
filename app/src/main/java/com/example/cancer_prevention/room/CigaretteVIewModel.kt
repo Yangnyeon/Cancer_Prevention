@@ -17,11 +17,15 @@ class TodoViewModel(application: Application) : AndroidViewModel(application) {
         get() = _currentData
 
     fun insert(cigarette: Cigarette) {
-        repository.insert(cigarette)
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.insert(cigarette)
+        }
     }
 
     fun delete(cigarette: Cigarette){
-        repository.delete(cigarette)
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.delete(cigarette)
+        }
     }
 
     fun getAll(): LiveData<List<Cigarette>> {

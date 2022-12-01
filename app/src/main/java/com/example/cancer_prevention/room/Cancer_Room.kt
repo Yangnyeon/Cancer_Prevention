@@ -36,6 +36,7 @@ class Cancer_Room : AppCompatActivity() {
 
         val repository = Cancer_Repository()
         val viewModelFactory = Cancer_ViewModel_Factory(repository)
+
         viewModel = ViewModelProvider(this,viewModelFactory).get(Cancer_VIewModel::class.java)
 
         viewModel.getPost(50,1,25)
