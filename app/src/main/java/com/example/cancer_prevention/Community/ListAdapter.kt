@@ -10,6 +10,8 @@ import android.widget.AdapterView
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
+import coil.transform.CircleCropTransformation
 import com.bumptech.glide.Glide
 import com.example.cancer_prevention.R
 import com.example.cancer_prevention.room.Cigarette
@@ -96,8 +98,8 @@ class ListAdapter(val itemList: ArrayList<ListLayout>,val context: Context): Rec
 
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val name: TextView = itemView.findViewById(R.id.list_tv_name)
-        val content : TextView = itemView.findViewById(R.id.list_tv_content)
-        val community_date : TextView = itemView.findViewById(R.id.list_tv_date)
+        val content: TextView = itemView.findViewById(R.id.list_tv_content)
+        val community_date: TextView = itemView.findViewById(R.id.list_tv_date)
         val comment_count = itemView.findViewById<TextView>(R.id.comment_count)
         val like_count = itemView.findViewById<TextView>(R.id.thumb_count)
         val nickname = itemView.findViewById<TextView>(R.id.list_tv_nickname)
@@ -105,15 +107,20 @@ class ListAdapter(val itemList: ArrayList<ListLayout>,val context: Context): Rec
 
         var imageIv: ImageView = itemView.findViewById(R.id.list_image)
 
-        fun bind(listlayout:ListLayout){
-            Glide.with(context).load(listlayout.imageUrl).fallback(R.drawable.ic_baseline_add_a_photo_24)
+        fun bind(listlayout: ListLayout) {
+            Glide.with(context).load(listlayout.imageUrl)
+                .fallback(R.drawable.ic_baseline_add_a_photo_24)
                 .error(R.drawable.ic_baseline_add_a_photo_24)
                 .into(imageIv)
+
+
+            imageIv.load(listlayout.imageUrl) {
+                transformations(CircleCropTransformation())
+                placeholder(null)
+                error(R.drawable.ic_baseline_add_a_photo_24)
+            }
+
         }
-
     }
-
-
-
 
 }

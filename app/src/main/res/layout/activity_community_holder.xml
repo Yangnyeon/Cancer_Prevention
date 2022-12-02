@@ -110,7 +110,8 @@
                             android:id="@+id/real_holder_image"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/board_content"></ImageView>
+                            android:layout_below="@+id/board_content">
+                        </ImageView>
 
 
                         <ImageView
@@ -181,8 +182,7 @@
                     android:id="@+id/recycler_view_community_comment"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_below="@id/content_holder_line">
-                </androidx.recyclerview.widget.RecyclerView>
+                    android:layout_below="@id/content_holder_line"></androidx.recyclerview.widget.RecyclerView>
 
 
             </RelativeLayout>

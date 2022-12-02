@@ -12,6 +12,8 @@ import androidx.appcompat.app.AlertDialog
 import androidx.cardview.widget.CardView
 import androidx.core.view.setPadding
 import androidx.recyclerview.widget.LinearLayoutManager
+import coil.load
+import coil.transform.CircleCropTransformation
 import com.bumptech.glide.Glide
 import com.example.cancer_prevention.Community.Comment.Comment_ListAdapter
 import com.example.cancer_prevention.Community.Comment.Comment_ListLayout
@@ -53,9 +55,11 @@ class Community_holder : AppCompatActivity() {
         setContentView(view)
 
 
-        binding.recyclerViewCommunityComment.layoutManager =
-            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        binding.recyclerViewCommunityComment.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         binding.recyclerViewCommunityComment.adapter = adapter
+
+
+
 
         //
 
@@ -104,10 +108,21 @@ class Community_holder : AppCompatActivity() {
                         board_nickname.text = "${getString("nickname")}"
                         likes.text = "${getLong("liked")}"
                         eye_holder_count.text = "조회수 : ${getLong("eye_count")}"
+
+                        /*
                         Glide.with(this@Community_holder)
                             .load("${getString("imageUrl")}")
                             .fallback(null)
                             .into(real_holder_image)
+
+                         */
+
+                        binding.realHolderImage
+                            .load("${getString("imageUrl")}"){
+                            placeholder(null)
+                            error(null)
+                        }
+
 
                     }
                 } catch (e: Exception) {
