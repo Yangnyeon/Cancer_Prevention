@@ -9,6 +9,7 @@ import android.widget.SearchView
 import androidx.activity.viewModels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.room.Room
@@ -25,13 +26,14 @@ import java.util.*
 class Room_Activity : AppCompatActivity(), OnItemClick {
 
     private lateinit var binding: ActivityRoomBinding
-    private val model: TodoViewModel by viewModels()
+   // private val model: TodoViewModel by viewModels()
+
+    private lateinit var model : TodoViewModel
+
     private lateinit var adapter: CigaretteAdapter
 
 
     var count = 0
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +41,11 @@ class Room_Activity : AppCompatActivity(), OnItemClick {
         binding = ActivityRoomBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initRecyclerView()
+
+        val repository = CigaretteRepository(application)
+        val viewModelFactory = Cigarette_Factory(repository)
+
+        model = ViewModelProvider(this, viewModelFactory)[TodoViewModel::class.java]
 
         model.getAll().observe(this@Room_Activity, Observer{
             adapter.setList(it)

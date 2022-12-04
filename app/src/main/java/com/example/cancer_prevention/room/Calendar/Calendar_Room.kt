@@ -7,15 +7,13 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.applikeysolutions.cosmocalendar.selection.OnDaySelectedListener
 import com.applikeysolutions.cosmocalendar.selection.SingleSelectionManager
 import com.example.cancer_prevention.databinding.ActivityCalendarRoomBinding
-import com.example.cancer_prevention.room.OnItemClick
-import com.example.cancer_prevention.room.Cigarette
-import com.example.cancer_prevention.room.CigaretteAdapter
-import com.example.cancer_prevention.room.TodoViewModel
+import com.example.cancer_prevention.room.*
 import kotlinx.android.synthetic.main.activity_calendar_room.*
 import kotlinx.android.synthetic.main.activity_main_bar_sub.*
 import kotlinx.android.synthetic.main.activity_main_bar_sub.view.*
@@ -27,7 +25,7 @@ import java.util.*
 class Calendar_Room : AppCompatActivity() , OnItemClick{
 
     private lateinit var binding : ActivityCalendarRoomBinding
-    private val memoViewModel: TodoViewModel by viewModels() // 뷰모델 연결
+    private lateinit var memoViewModel: TodoViewModel  // 뷰모델 연결
     //private val adapter : CigaretteAdapter by lazy { CigaretteAdapter(this) } // 어댑터 선언
     private lateinit var adapter: CigaretteAdapter
 
@@ -40,6 +38,11 @@ class Calendar_Room : AppCompatActivity() , OnItemClick{
 
         binding = ActivityCalendarRoomBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val repository = CigaretteRepository(application)
+        val viewModelFactory = Cigarette_Factory(repository)
+
+        memoViewModel = ViewModelProvider(this, viewModelFactory)[TodoViewModel::class.java]
 
         binding.calendarRecyclerview.layoutManager = LinearLayoutManager(this@Calendar_Room, LinearLayoutManager.VERTICAL,false)
         adapter = CigaretteAdapter(this@Calendar_Room)

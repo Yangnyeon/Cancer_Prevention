@@ -47,7 +47,7 @@ class CigaretteAdapter(listener: OnItemClick) : RecyclerView.Adapter<CigaretteAd
     }
 
     override fun onBindViewHolder(holder: TodoViewHolder, position: Int) {
-        holder.bind(items[position], todoViewModel = TodoViewModel(Application()))
+        holder.bind(items[position])
     }
 
     fun setList(cigarette: List<Cigarette>) {
@@ -60,7 +60,7 @@ class CigaretteAdapter(listener: OnItemClick) : RecyclerView.Adapter<CigaretteAd
 
         lateinit var cigarette : Cigarette
 
-        fun bind(item: Cigarette, todoViewModel: TodoViewModel){
+        fun bind(item: Cigarette){
 
 
             binding.RoomData1.text = item.content

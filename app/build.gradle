@@ -48,6 +48,7 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     kotlinOptions {
+        freeCompilerArgs = ['-Xjvm-default=enable']
         jvmTarget = '1.8'
     }
     dataBinding {
@@ -55,6 +56,9 @@ android {
     }
     buildFeatures {
         viewBinding true
+    }
+    kapt {
+        correctErrorTypes = true
     }
 }
 
@@ -78,8 +82,33 @@ dependencies {
 
     //coil
     implementation("io.coil-kt:coil:2.0.0-rc03")
+    
+    //hilt
+    implementation("com.google.dagger:hilt-android:2.44")
+    kapt("com.google.dagger:hilt-android-compiler:2.44")
+    implementation "com.android.support:support-annotations:28.0.0"
 
-    def lifecycle_version = "2.3.0"
+    //paging
+    def paging_version = "3.0.0"
+
+    implementation "androidx.paging:paging-runtime:$paging_version"
+
+    // alternatively - without Android dependencies for tests
+    testImplementation "androidx.paging:paging-common:$paging_version"
+
+    // optional - RxJava2 support
+    implementation "androidx.paging:paging-rxjava2:$paging_version"
+
+    // optional - RxJava3 support
+    implementation "androidx.paging:paging-rxjava3:$paging_version"
+
+    // optional - Guava ListenableFuture support
+    implementation "androidx.paging:paging-guava:$paging_version"
+
+    // optional - Jetpack Compose integration
+    implementation "androidx.paging:paging-compose:1.0.0-alpha09"
+
+    def lifecycle_version = "2.5.1"
     // ViewModel - 라이프 사이클
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
     // LiveData - 데이터의 변경 사항을 알 수 있음

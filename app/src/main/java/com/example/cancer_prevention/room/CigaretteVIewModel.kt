@@ -2,14 +2,20 @@ package com.example.cancer_prevention.room
 
 import android.app.Application
 import androidx.lifecycle.*
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class TodoViewModel(application: Application) : AndroidViewModel(application) {
+@HiltViewModel
+class TodoViewModel @Inject constructor(private val repository : CigaretteRepository) : AndroidViewModel(Application()) {
 
 
+    /*
     private val repository = CigaretteRepository(application)
     private val items = repository.getAll()
+
+     */
 
     private var _currentData = MutableLiveData<List<Cigarette>>()
 
@@ -29,8 +35,16 @@ class TodoViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun getAll(): LiveData<List<Cigarette>> {
-        return items
+
+        return repository.getAll()
     }
+
+    /*
+
+    fun getAll(): LiveData<List<Cigarette>> {
+        return item
+    }
+     */
 
     fun updateMemo(cigarette : Cigarette){
         viewModelScope.launch(Dispatchers.IO) {

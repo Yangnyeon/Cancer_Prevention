@@ -4,15 +4,17 @@ import android.app.Application
 import androidx.lifecycle.LiveData
 import com.example.cancer_prevention.Retrofit.data
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
-class CigaretteRepository(application: Application) {
+class CigaretteRepository @Inject
+
+constructor(application: Application) {
+
+
     private val cigaretteDao: CigaretteDao
-    private val cigaretteList: LiveData<List<Cigarette>>
-
     init {
-        var db = AppDatabase.getInstance(application)
+        var db = Cigarette_Module.get_Cigarette_DB(application)
         cigaretteDao = db!!.todoDao()
-        cigaretteList = db.todoDao().getAll()
     }
 
     fun insert(cigarette: Cigarette) {

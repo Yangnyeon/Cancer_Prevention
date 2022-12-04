@@ -9,7 +9,7 @@ import com.example.cancer_prevention.Community_Viewmodel
 
 class Community_Factory(private val application: Application) :
     ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(aClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return Community_Viewmodel(application) as T
     }
 }
